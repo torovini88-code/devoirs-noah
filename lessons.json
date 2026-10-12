@@ -1,0 +1,676 @@
+{
+ "current": "corps-2026-10-12",
+ "lessons": [
+  {
+   "id": "automne-2026-10-05",
+   "date": "2026-10-05",
+   "title": "L'automne",
+   "subtitle": "Semaine du 5 au 9 octobre",
+   "due": "Pour mardi 6 octobre",
+   "dictationDay": "jeudi 8 octobre",
+   "words": [
+    {
+     "art": "un",
+     "noun": "gland",
+     "es": "bellota",
+     "page": 8,
+     "pic": "art:gland"
+    },
+    {
+     "art": "une",
+     "noun": "poire",
+     "es": "pera",
+     "page": 8,
+     "pic": "art:poire"
+    },
+    {
+     "art": "un",
+     "noun": "écureuil",
+     "es": "ardilla",
+     "page": 8,
+     "pic": "art:écureuil"
+    },
+    {
+     "art": "une",
+     "noun": "noix",
+     "es": "nuez",
+     "page": 8,
+     "pic": "art:noix"
+    },
+    {
+     "art": "une",
+     "noun": "citrouille",
+     "es": "calabaza",
+     "page": 8,
+     "pic": "art:citrouille"
+    },
+    {
+     "art": "une",
+     "noun": "pomme",
+     "es": "manzana",
+     "page": 8,
+     "pic": "art:pomme",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "feuille",
+     "es": "hoja",
+     "page": 8,
+     "pic": "art:feuille",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "arbre",
+     "es": "árbol",
+     "page": 8,
+     "pic": "art:arbre",
+     "dict": true
+    },
+    {
+     "art": "du",
+     "noun": "maïs",
+     "es": "maíz",
+     "page": 8,
+     "pic": "art:maïs"
+    },
+    {
+     "art": "la",
+     "noun": "pluie",
+     "es": "lluvia",
+     "page": 8,
+     "pic": "art:pluie",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "champignon",
+     "es": "hongo",
+     "page": 8,
+     "pic": "art:champignon"
+    },
+    {
+     "art": "une",
+     "noun": "tarte",
+     "es": "tarta",
+     "page": 8,
+     "pic": "art:tarte"
+    },
+    {
+     "art": "un",
+     "noun": "parapluie",
+     "es": "paraguas",
+     "page": 8,
+     "pic": "art:parapluie",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "souris",
+     "es": "ratón",
+     "page": 8,
+     "pic": "art:souris",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "râteau",
+     "es": "rastrillo",
+     "page": 8,
+     "pic": "art:râteau"
+    },
+    {
+     "art": "le",
+     "noun": "tronc",
+     "es": "tronco",
+     "page": 8,
+     "pic": "art:tronc"
+    },
+    {
+     "art": "une",
+     "noun": "branche",
+     "es": "rama",
+     "page": 8,
+     "pic": "art:branche",
+     "dict": true
+    },
+    {
+     "art": "des",
+     "noun": "raisins",
+     "es": "uvas",
+     "page": 8,
+     "pic": "art:raisins"
+    },
+    {
+     "art": "un",
+     "noun": "épouvantail",
+     "es": "espantapájaros",
+     "page": 8,
+     "pic": "art:épouvantail"
+    },
+    {
+     "art": "des",
+     "noun": "bottes de pluie",
+     "es": "botas de lluvia",
+     "page": 8,
+     "pic": "art:bottes de pluie"
+    },
+    {
+     "art": "des",
+     "noun": "racines",
+     "es": "raíces",
+     "page": 9,
+     "pic": "art:racines",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "châtaigne",
+     "es": "castaña",
+     "page": 9,
+     "pic": "art:châtaigne"
+    },
+    {
+     "art": "une",
+     "noun": "école",
+     "es": "escuela",
+     "page": 9,
+     "pic": "art:école"
+    },
+    {
+     "art": "une",
+     "noun": "récolte",
+     "es": "cosecha",
+     "page": 9,
+     "pic": "art:récolte"
+    },
+    {
+     "art": "un",
+     "noun": "imperméable",
+     "es": "impermeable",
+     "page": 9,
+     "pic": "art:imperméable"
+    },
+    {
+     "art": "une",
+     "noun": "dinde",
+     "es": "pavo",
+     "page": 9,
+     "pic": "art:dinde"
+    },
+    {
+     "art": "un",
+     "noun": "chandail",
+     "es": "suéter",
+     "page": 9,
+     "pic": "art:chandail"
+    },
+    {
+     "art": "un",
+     "noun": "nuage",
+     "es": "nube",
+     "page": 9,
+     "pic": "art:nuage",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "brouette",
+     "es": "carretilla",
+     "page": 9,
+     "pic": "art:brouette"
+    },
+    {
+     "art": "un",
+     "noun": "hibou",
+     "es": "búho",
+     "page": 9,
+     "pic": "art:hibou",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "tournesol",
+     "es": "girasol",
+     "page": 9,
+     "pic": "art:tournesol"
+    },
+    {
+     "art": "du",
+     "noun": "foin",
+     "es": "heno",
+     "page": 9,
+     "pic": "art:foin"
+    },
+    {
+     "art": "une",
+     "noun": "barrière",
+     "es": "cerca",
+     "page": 9,
+     "pic": "art:barrière"
+    },
+    {
+     "art": "un",
+     "noun": "tas de feuilles",
+     "es": "montón de hojas",
+     "page": 9,
+     "pic": "art:tas de feuilles"
+    },
+    {
+     "art": "du",
+     "noun": "blé",
+     "es": "trigo",
+     "page": 9,
+     "pic": "art:blé",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "chauve-souris",
+     "es": "murciélago",
+     "page": 9,
+     "pic": "art:chauve-souris"
+    },
+    {
+     "art": "une",
+     "noun": "grange",
+     "es": "granero",
+     "page": 9,
+     "pic": "art:grange"
+    },
+    {
+     "art": "une",
+     "noun": "courge",
+     "es": "calabaza",
+     "page": 9,
+     "pic": "art:courge"
+    }
+   ],
+   "numbers": {
+    "from": 41,
+    "to": 60,
+    "page": 75
+   },
+   "days": true,
+   "phrases": [
+    {
+     "pre": "Dans l'arbre, je vois ",
+     "post": ".",
+     "es": "En el árbol, veo…",
+     "chips": [
+      "un hibou",
+      "un écureuil",
+      "une chauve-souris",
+      "une feuille"
+     ]
+    },
+    {
+     "pre": "Je mange ",
+     "post": " à l'automne.",
+     "es": "Como … en otoño.",
+     "chips": [
+      "une pomme",
+      "une poire",
+      "des raisins",
+      "une tarte",
+      "du maïs",
+      "une courge"
+     ]
+    },
+    {
+     "pre": "Quand il pleut, je mets ",
+     "post": ".",
+     "es": "Cuando llueve, me pongo…",
+     "chips": [
+      "un imperméable",
+      "des bottes de pluie",
+      "un chandail"
+     ]
+    },
+    {
+     "pre": "Il y a ",
+     "post": " dans la grange.",
+     "es": "Hay … en el granero.",
+     "chips": [
+      "du foin",
+      "une brouette",
+      "un râteau",
+      "une souris",
+      "une chauve-souris"
+     ]
+    },
+    {
+     "pre": "Dans le ciel, il y a ",
+     "post": ".",
+     "es": "En el cielo hay…",
+     "chips": [
+      "un nuage",
+      "une chauve-souris",
+      "un hibou"
+     ]
+    }
+   ],
+   "notes": [
+    "Hoja de la Madame Devina (clase 701), semana del 5 al 9 de octubre: copiar las palabras de las páginas 8 y 9, escribir 5 frases, copiar los números 41 a 60 (p. 75) y dictée el jueves."
+   ]
+  },
+  {
+   "id": "corps-2026-10-12",
+   "date": "2026-10-12",
+   "title": "Les parties du corps",
+   "subtitle": "Semaine du 12 au 16 octobre",
+   "due": "Pour mardi 13 octobre",
+   "dictationDay": "jeudi 15 octobre",
+   "words": [
+    {
+     "art": "le",
+     "noun": "corps",
+     "es": "el cuerpo",
+     "page": 12,
+     "pic": "body:body:all",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "œil",
+     "es": "un ojo",
+     "page": 12,
+     "pic": "body:face:yeux"
+    },
+    {
+     "art": "des",
+     "noun": "yeux",
+     "es": "los ojos",
+     "page": 12,
+     "pic": "body:face:yeux",
+     "dict": true
+    },
+    {
+     "art": "la",
+     "noun": "tête",
+     "es": "la cabeza",
+     "page": 12,
+     "pic": "body:body:tete",
+     "dict": true
+    },
+    {
+     "art": "les",
+     "noun": "cheveux",
+     "es": "el pelo",
+     "page": 12,
+     "pic": "body:face:cheveux",
+     "dict": true
+    },
+    {
+     "art": "le",
+     "noun": "front",
+     "es": "la frente",
+     "page": 12,
+     "pic": "body:face:front"
+    },
+    {
+     "art": "le",
+     "noun": "nez",
+     "es": "la nariz",
+     "page": 12,
+     "pic": "body:face:nez",
+     "dict": true
+    },
+    {
+     "art": "l'",
+     "noun": "oreille",
+     "es": "la oreja",
+     "page": 12,
+     "pic": "body:face:oreille"
+    },
+    {
+     "art": "la",
+     "noun": "joue",
+     "es": "la mejilla",
+     "page": 12,
+     "pic": "body:face:joue",
+     "dict": true
+    },
+    {
+     "art": "les",
+     "noun": "lèvres",
+     "es": "los labios",
+     "page": 12,
+     "pic": "body:face:levres"
+    },
+    {
+     "art": "les",
+     "noun": "dents",
+     "es": "los dientes",
+     "page": 12,
+     "pic": "body:face:dents",
+     "dict": true
+    },
+    {
+     "art": "la",
+     "noun": "langue",
+     "es": "la lengua",
+     "page": 12,
+     "pic": "body:face:langue"
+    },
+    {
+     "art": "le",
+     "noun": "menton",
+     "es": "la barbilla",
+     "page": 12,
+     "pic": "body:face:menton"
+    },
+    {
+     "art": "la",
+     "noun": "main",
+     "es": "la mano",
+     "page": 12,
+     "pic": "body:hand:main",
+     "dict": true
+    },
+    {
+     "art": "le",
+     "noun": "doigt",
+     "es": "el dedo",
+     "page": 12,
+     "pic": "body:hand:doigt"
+    },
+    {
+     "art": "le",
+     "noun": "poignet",
+     "es": "la muñeca",
+     "page": 12,
+     "pic": "body:body:poignet"
+    },
+    {
+     "art": "le",
+     "noun": "bras",
+     "es": "el brazo",
+     "page": 12,
+     "pic": "body:body:bras",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "poing",
+     "es": "un puño",
+     "page": 12,
+     "pic": "body:fist:poing"
+    },
+    {
+     "art": "le",
+     "noun": "coude",
+     "es": "el codo",
+     "page": 12,
+     "pic": "body:body:coude"
+    },
+    {
+     "art": "l'",
+     "noun": "épaule",
+     "es": "el hombro",
+     "page": 12,
+     "pic": "body:body:epaule"
+    },
+    {
+     "art": "le",
+     "noun": "nombril",
+     "es": "el ombligo",
+     "page": 13,
+     "pic": "body:body:nombril"
+    },
+    {
+     "art": "le",
+     "noun": "dos",
+     "es": "la espalda",
+     "page": 13,
+     "pic": "body:back:dos",
+     "dict": true
+    },
+    {
+     "art": "les",
+     "noun": "abdominaux",
+     "es": "los abdominales",
+     "page": 13,
+     "pic": "body:body:abdominaux"
+    },
+    {
+     "art": "le",
+     "noun": "pied",
+     "es": "el pie",
+     "page": 13,
+     "pic": "body:foot:pied",
+     "dict": true
+    },
+    {
+     "art": "le",
+     "noun": "genou",
+     "es": "la rodilla",
+     "page": 13,
+     "pic": "body:body:genou"
+    },
+    {
+     "art": "la",
+     "noun": "jambe",
+     "es": "la pierna",
+     "page": 13,
+     "pic": "body:body:jambe"
+    },
+    {
+     "art": "la",
+     "noun": "cheville",
+     "es": "el tobillo",
+     "page": 13,
+     "pic": "body:foot:cheville"
+    },
+    {
+     "art": "les",
+     "noun": "orteils",
+     "es": "los dedos del pie",
+     "page": 13,
+     "pic": "body:foot:orteils"
+    },
+    {
+     "art": "le",
+     "noun": "pouce",
+     "es": "el pulgar",
+     "page": 13,
+     "pic": "body:hand:pouce",
+     "dict": true
+    },
+    {
+     "art": "les",
+     "noun": "ongles",
+     "es": "las uñas",
+     "page": 13,
+     "pic": "body:hand:ongles"
+    },
+    {
+     "art": "les",
+     "noun": "cils",
+     "es": "las pestañas",
+     "page": 13,
+     "pic": "body:face:cils"
+    },
+    {
+     "art": "le",
+     "noun": "cou",
+     "es": "el cuello",
+     "page": 13,
+     "pic": "body:body:cou",
+     "dict": true
+    }
+   ],
+   "numbers": {
+    "from": 52,
+    "to": 80,
+    "page": 75
+   },
+   "phrases": [
+    {
+     "pre": "Je touche ",
+     "post": ".",
+     "es": "Toco…",
+     "chips": [
+      "le nez",
+      "la tête",
+      "le coude",
+      "le menton",
+      "l'épaule",
+      "le genou"
+     ]
+    },
+    {
+     "pre": "Je me lave ",
+     "post": ".",
+     "es": "Me lavo…",
+     "chips": [
+      "les dents",
+      "les cheveux",
+      "le dos",
+      "le pied",
+      "la main"
+     ]
+    },
+    {
+     "pre": "Je lève ",
+     "post": ".",
+     "es": "Levanto…",
+     "chips": [
+      "le bras",
+      "la jambe",
+      "le pied",
+      "le pouce",
+      "la main"
+     ]
+    },
+    {
+     "pre": "J'ai mal ",
+     "post": ".",
+     "es": "Me duele…",
+     "chips": [
+      "à la tête",
+      "au dos",
+      "au pied",
+      "au genou",
+      "à la jambe"
+     ]
+    },
+    {
+     "pre": "Je ferme ",
+     "post": ".",
+     "es": "Cierro…",
+     "chips": [
+      "les yeux",
+      "le poing",
+      "la main"
+     ]
+    }
+   ],
+   "notes": [
+    "Hoja de la Madame Devina (clase 701), semana del 12 al 16 de octubre: copiar todas las palabras del lexique «Les parties du corps» (págs. 12 y 13), escribir 5 frases, dictée el jueves y números de la p. 75.",
+    "La hoja dice 60 a 80, pero la lista empieza en 52 porque Noah no terminó la tarea anterior desde ahí."
+   ]
+  }
+ ]
+}
