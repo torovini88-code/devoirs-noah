@@ -162,6 +162,39 @@
     var s = scopes(), f = s.filter(function (x) { return x.id === store.scope; })[0];
     return f || s[0];
   }
+  /* Defis mélangés: mots de TOUTES les leçons (la nouvelle comprise) + nombres + jours, tirés au hasard à chaque partie */
+  function numberWords() {
+    var seen = {}, out = [];
+    LESSONS.forEach(function (l) {
+      if (!l.numbers) return;
+      for (var n = l.numbers.from; n <= l.numbers.to; n++) {
+        if (seen[n]) continue; seen[n] = 1;
+        var nw = PICS.numWord(n);
+        out.push({ kind: 'num', i: n, lid: 'num', svg: PICS.numSVG(n), tap: null, art: '', noun: nw, say: nw.replace(/-/g, ' '), es: String(n), picKey: 'num:' + n });
+      }
+    });
+    return out;
+  }
+  function dayWords() {
+    if (!LESSONS.some(function (l) { return l.days; })) return [];
+    return PICS.jours.map(function (j, n) { return { kind: 'day', i: n, lid: 'day', svg: j.svg, tap: null, art: '', noun: j.word, say: j.word, es: j.es, picKey: 'day:' + n }; });
+  }
+  function mixBuckets() {
+    var b = LESSONS.map(function (l) { return l.words; });
+    b.push(numberWords()); b.push(dayWords());
+    return b.filter(function (x) { return x.length; });
+  }
+  /* Reparto equilibrado: una palabra de cada grupo por turno, en orden aleatorio */
+  function mixOrder() {
+    var bs = mixBuckets().map(shuffle), out = [], left = true;
+    while (left) {
+      left = false;
+      shuffle(bs.map(function (_, n) { return n; })).forEach(function (n) { if (bs[n].length) { out.push(bs[n].pop()); left = true; } });
+    }
+    return out;
+  }
+  function mixCount() { return mixBuckets().reduce(function (a, x) { return a + x.length; }, 0); }
+  function bestKey() { return (G && G.mix ? 'mix-' : '') + (G ? G.k : ''); }
 
   /* ---------- Voz: se busca una voz de Francia (fr-FR), de la mejor calidad disponible ---------- */
   var synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
@@ -238,11 +271,11 @@
       '<span class="m-bar"><i style="width:' + Math.round(100 * n / Math.max(1, m.total)) + '%"></i></span></span>' +
       '<span class="m-count">' + n + ' / ' + m.total + '</span></button>';
   }
-  function gameBtn(k) {
-    var m = GAME_UI[k], n = Math.min(m.total, store.best[k] || 0);
+  function gameBtn(k, mix) {
+    var m = GAME_UI[k], n = Math.min(m.total, store.best[(mix ? 'mix-' : '') + k] || 0);
     var cnt = m.stars ? '★'.repeat(n) + '☆'.repeat(m.total - n) : 'Record ' + n + '/' + m.total;
     var col = { jacques: 'var(--c5)', toucher: 'var(--c1)', ecoute: 'var(--c2)', memoire: 'var(--c3)', lettres: 'var(--c4)' }[k];
-    return '<button class="mission' + (n >= m.total ? ' is-full' : '') + '" type="button" data-g="' + k + '" style="--c:' + col + '">' +
+    return '<button class="mission' + (n >= m.total ? ' is-full' : '') + '" type="button" data-g="' + k + '"' + (mix ? ' data-mix="1"' : '') + ' style="--c:' + col + '">' +
       '<span class="m-ico" aria-hidden="true">' + m.ico + '</span>' +
       '<span class="m-body"><b>' + m.name + '</b><small>' + m.sub + '</small><span class="es">' + m.es + '</span>' +
       '<span class="m-bar"><i style="width:' + Math.round(100 * n / m.total) + '%"></i></span></span><span class="m-count">' + cnt + '</span></button>';
@@ -255,7 +288,11 @@
     ['mots', 'phrases', 'nombres'].forEach(function (k) { if (hasKind(c, k)) g1 += missionBtn(c, k); });
     ['dictee', 'jours'].forEach(function (k) { if (hasKind(c, k)) g2 += missionBtn(c, k); });
     h += group(c.due || 'Devoirs', g1) + group('Pour ' + (c.dictationDay || 'jeudi'), g2);
-    h += group('Les défis · jouer et réviser', GORDER.map(gameBtn).join(''));
+    h += group('Les défis · jouer et réviser', GORDER.map(function (k) { return gameBtn(k, false); }).join(''));
+    if (LESSONS.length > 1) {
+      h += group('Défis mélangés · toutes les leçons', '<p class="how">Tout ce que tu as appris, dans le désordre. Les questions changent à chaque partie !<span class="es">Todo lo aprendido, mezclado. ¡Las preguntas cambian en cada partida!</span></p>' +
+        GORDER.map(function (k) { return gameBtn(k, true); }).join(''));
+    }
     var prevs = LESSONS.filter(function (l) { return l !== c; }).reverse();
     if (prevs.length) {
       h += '<div class="group"><h3>Leçons précédentes</h3>';
@@ -383,21 +420,28 @@
   }
   function setFb(txt, cls) { var f = $('#fb'); if (f) { f.textContent = txt; f.className = 'fb ' + (cls || ''); } }
   function bumpScore() { var p = document.querySelectorAll('.g-top .pill b'); if (p[1]) p[1].textContent = G.score; }
-  function openGame(k) { stopSpeaking(); G = { k: k }; $('#g-title').textContent = GAME_UI[k].name; screen('game'); setup(); }
+  function openGame(k, mix) { stopSpeaking(); G = { k: k, mix: !!mix }; $('#g-title').textContent = GAME_UI[k].name + (mix ? ' · mélange' : ''); screen('game'); setup(); }
   function setup() {
-    var k = G.k, m = GAME_UI[k], d = GDESC[k], best = store.best[k] || 0, sc = currentScope(), list = scopes(), lastGroup = '';
-    G = { k: k };
+    var k = G.k, mix = !!G.mix, m = GAME_UI[k], d = GDESC[k], best = store.best[(mix ? 'mix-' : '') + k] || 0, sc = currentScope(), list = scopes(), lastGroup = '';
+    G = { k: k, mix: mix };
     var bestTxt = best ? (m.stars ? 'Meilleur résultat : ' + '★'.repeat(best) + '☆'.repeat(3 - best) : 'Meilleur score : ' + best + ' sur ' + m.total) : "Pas encore de score. C'est ton premier défi !";
-    var h = '<div class="card setup"><p class="lead">' + d.fr + '</p><span class="es">' + d.es + '</span><div class="scopes" role="group" aria-label="Choisir les mots du jeu">';
-    list.forEach(function (s) {
-      if (s.group !== lastGroup) { h += '<h3>' + s.group + '</h3>'; lastGroup = s.group; }
-      h += '<button class="btn" type="button" data-scope="' + esc(s.id) + '" aria-pressed="' + (s.id === sc.id) + '">' + s.label + '<span class="es">' + s.sub + '</span></button>';
-    });
-    $('#g-body').innerHTML = h + '</div><p class="best">' + bestTxt + '</p><button class="btn primary" type="button" id="g-go">Jouer</button></div>';
+    var h = '<div class="card setup"><p class="lead">' + d.fr + '</p><span class="es">' + d.es + '</span>';
+    if (mix) {
+      h += '<p class="how">Toutes les leçons sont mélangées : ' + mixCount() + ' mots, nombres et jours. Les questions changent à chaque partie !<span class="es">Todas las lecciones mezcladas. ¡Las preguntas cambian en cada partida!</span></p>';
+    } else {
+      h += '<div class="scopes" role="group" aria-label="Choisir les mots du jeu">';
+      list.forEach(function (s) {
+        if (s.group !== lastGroup) { h += '<h3>' + s.group + '</h3>'; lastGroup = s.group; }
+        h += '<button class="btn" type="button" data-scope="' + esc(s.id) + '" aria-pressed="' + (s.id === sc.id) + '">' + s.label + '<span class="es">' + s.sub + '</span></button>';
+      });
+      h += '</div>';
+    }
+    $('#g-body').innerHTML = h + '<p class="best">' + bestTxt + '</p><button class="btn primary" type="button" id="g-go">Jouer</button></div>';
   }
   function startGame() {
-    var k = G.k, sc = currentScope();
-    G = { k: k, round: 0, score: 0, lives: 3, pool: sc.words.slice(), deck: [] };
+    var k = G.k, mix = !!G.mix, sc = currentScope();
+    G = { k: k, mix: mix, round: 0, score: 0, lives: 3, pool: [], deck: [] };
+    if (mix) { G.pool = mixOrder(); G.deck = G.pool.slice().reverse(); } else G.pool = sc.words.slice();
     if (k === 'memoire') return memStart();
     nextRound();
   }
@@ -410,8 +454,8 @@
     stopSpeaking();
     if (m.stars) { stars = score; msg = 'Tu as trouvé les 6 paires en ' + G.moves + ' coups.'; }
     else { stars = score >= 9 ? 3 : score >= 6 ? 2 : score >= 1 ? 1 : 0; msg = 'Tu as réussi ' + score + ' manche' + (score > 1 ? 's' : '') + ' sur ' + ROUNDS + '.'; }
-    var rec = score > (store.best[k] || 0);
-    if (rec) { store.best[k] = score; save(); }
+    var bk = bestKey(), rec = score > (store.best[bk] || 0);
+    if (rec) { store.best[bk] = score; save(); }
     $('#g-body').innerHTML = '<div class="card"><h2>' + (stars >= 2 ? 'Bravo Noah !' : 'Bien essayé Noah !') + '</h2><div class="bigstar" role="img" aria-label="' + stars + ' étoiles sur 3">' + '★'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
       '<p class="lead">' + msg + (rec ? ' Nouveau record !' : '') + '</p>' +
       '<button class="btn primary" type="button" id="g-again">Rejouer</button><button class="btn" type="button" id="g-home">Retour aux missions</button></div>';
@@ -419,7 +463,8 @@
   }
   function makeOpts(w) {
     var seen = {}, ds = []; seen[w.picKey] = 1;
-    shuffle(G.pool).concat(shuffle(allWords())).forEach(function (x) { if (ds.length < 3 && !seen[x.picKey]) { seen[x.picKey] = 1; ds.push(x); } });
+    var kind = w.kind || 'w';
+    shuffle(G.pool).filter(function (x) { return (x.kind || 'w') === kind; }).concat(shuffle(G.pool), shuffle(allWords())).forEach(function (x) { if (ds.length < 3 && !seen[x.picKey]) { seen[x.picKey] = 1; ds.push(x); } });
     return shuffle([w].concat(ds));
   }
   function choicesHTML(opts) {
@@ -527,7 +572,7 @@
 
   /* Memoria */
   function memStart() {
-    var seen = {}, pool = shuffle(G.pool).filter(function (w) { if (seen[w.picKey]) return false; seen[w.picKey] = 1; return true; });
+    var seen = {}, pool = (G.mix ? G.pool.slice() : shuffle(G.pool)).filter(function (w) { if (seen[w.picKey]) return false; seen[w.picKey] = 1; return true; });
     if (pool.length < 6) shuffle(allWords()).forEach(function (x) { if (pool.length < 6 && !seen[x.picKey]) { seen[x.picKey] = 1; pool.push(x); } });
     var ws = pool.slice(0, 6), cards = [];
     ws.forEach(function (w) { cards.push({ id: w.picKey, t: 'p', w: w }); cards.push({ id: w.picKey, t: 'w', w: w }); });
@@ -566,7 +611,7 @@
     var b = e.target.closest ? e.target.closest('.mission') : null;
     if (!b) return;
     var g = b.getAttribute('data-g');
-    if (g) return openGame(g);
+    if (g) return openGame(g, b.getAttribute('data-mix') === '1');
     var l = lessonById(b.getAttribute('data-l')), k = b.getAttribute('data-k');
     if (!l) return;
     if (k === 'phrases') { curL = l; curK = 'phrases'; renderPhrases(); screen('phr'); } else openDeck(l, k);
@@ -617,7 +662,7 @@
       store.scope = el.getAttribute('data-scope'); save();
       document.querySelectorAll('[data-scope]').forEach(function (b) { b.setAttribute('aria-pressed', b === el ? 'true' : 'false'); });
     } else if (t.closest('#g-go')) startGame();
-    else if (t.closest('#g-again')) { var k = G.k; G = { k: k }; setup(); }
+    else if (t.closest('#g-again')) { var k = G.k, mx = G.mix; G = { k: k, mix: mx }; setup(); }
     else if (t.closest('#g-home')) home();
     else if ((el = t.closest('.choice'))) onChoice(el);
     else if ((el = t.closest('.lt'))) onLetter(el);
