@@ -290,18 +290,8 @@
     h += group(c.due || 'Devoirs', g1) + group('Pour ' + (c.dictationDay || 'jeudi'), g2);
     h += group('Les défis · jouer et réviser', GORDER.map(function (k) { return gameBtn(k, false); }).join(''));
     if (LESSONS.length > 1) {
-      h += group('Défis mélangés · toutes les leçons', '<p class="how">Tout ce que tu as appris, dans le désordre. Les questions changent à chaque partie !<span class="es">Todo lo aprendido, mezclado. ¡Las preguntas cambian en cada partida!</span></p>' +
+      h += group('Leçons précédentes · révision mélangée', '<p class="how">Tout ce que tu as appris dans les leçons, dans le désordre. Les questions changent à chaque partie !<span class="es">Todo lo aprendido, mezclado. ¡Las preguntas cambian en cada partida!</span></p>' +
         GORDER.map(function (k) { return gameBtn(k, true); }).join(''));
-    }
-    var prevs = LESSONS.filter(function (l) { return l !== c; }).reverse();
-    if (prevs.length) {
-      h += '<div class="group"><h3>Leçons précédentes</h3>';
-      prevs.forEach(function (l) {
-        var ms = '';
-        ['mots', 'phrases', 'nombres', 'dictee', 'jours'].forEach(function (k) { if (hasKind(l, k)) ms += missionBtn(l, k); });
-        h += '<details class="prev"><summary>' + l.title + '<small>' + l.subtitle + '</small></summary><div class="group">' + ms + '</div></details>';
-      });
-      h += '</div>';
     }
     $('#s-map').innerHTML = h + '</div>';
     var notes = '';
