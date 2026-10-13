@@ -418,6 +418,23 @@ details.prev .group { margin-top: 12px; }
 </div>
 <div id="toast" class="toast" role="status" hidden></div>
 
+<script>
+/* Diagnostic: si l'app reste sur «Chargement», on affiche l'erreur */
+(function(){
+  var errs=[];
+  function show(){
+    var el=document.getElementById('loading');
+    if(!el||!el.parentNode) return;
+    el.innerHTML='Oups, l\'app n\'a pas pu démarrer.<br><small>'+(errs.join('<br>')||'Aucune erreur (fichier manquant ?)')+'</small>';
+  }
+  window.addEventListener('error',function(e){
+    var t=e.target;
+    errs.push(t&&t.src?('Fichier non chargé : '+t.src.split('/').slice(-1)[0]):((e.message||'erreur')+(e.lineno?' ('+(e.filename||'').split('/').pop()+':'+e.lineno+')':'')));
+  },true);
+  window.addEventListener('unhandledrejection',function(e){errs.push('Promesse : '+(e.reason&&e.reason.message||e.reason));});
+  setTimeout(show,7000);
+})();
+</script>
 <script src="drawings.js"></script>
 <script src="app.js"></script>
 </body>
