@@ -218,14 +218,30 @@
     frVoice = frList[0] || null;
     return vs.length;
   }
-  function checkVoiceNote() { var n = pickVoice(); $('#voice-note').hidden = !(!synth || (n > 0 && !frVoice)); }
+  function checkVoiceNote() {
+    var n = pickVoice(), vn = $('#voice-note');
+    vn.hidden = !(!synth || (n > 0 && !frVoice));
+    if (IS_IOS) vn.textContent = 'Este iPhone/iPad no tiene una voz en francés. Añádela en Ajustes > Accesibilidad > Contenido hablado > Voces > Francés (Francia).';
+  }
   function setSpeaking(on) { $('#face-wrap').classList.toggle('speaking', on); }
+  /* iPhone/iPad (Chrome y Safari usan WebKit): el sonido solo se desbloquea dentro de un gesto del usuario,
+     las voces pueden llegar tarde y el interruptor de silencio lo apaga. Se desbloquea al primer toque. */
+  var audioState = { started: 0, startedId: {}, lastErr: '', unlocked: false, hinted: false }, utts = [], busy = false;
+  var IS_IOS = /iPhone|iPad|iPod/i.test(navigator.userAgent || '') || (/Macintosh/i.test(navigator.userAgent || '') && navigator.maxTouchPoints > 1);
+  var SILENT_WAV = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=';
+  function unlockAudio() {
+    if (audioState.unlocked) return;
+    audioState.unlocked = true;
+    try { var a = new Audio(SILENT_WAV); var pr = a.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {}
+    if (synth) { try { synth.resume(); var u = new SpeechSynthesisUtterance(' '); u.volume = 0; u.lang = 'fr-FR'; utts.push(u); synth.speak(u); } catch (e) {} }
+  }
+  ['touchend', 'click', 'keydown'].forEach(function (ev) { document.addEventListener(ev, unlockAudio, { capture: true, passive: true }); });
   function mk(text, rate, id) {
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'fr-FR';
     if (frVoice) { u.voice = frVoice; u.lang = /^fr[-_]FR$/i.test(frVoice.lang) ? 'fr-FR' : frVoice.lang.replace('_', '-'); }
     u.rate = rate; u.pitch = 1;
-    u.onstart = function () { if (id === sid) setSpeaking(true); };
+    u.onstart = function () { audioState.started++; audioState.startedId[id] = 1; audioState.lastErr = ''; if (id === sid) setSpeaking(true); };
     return u;
   }
   function speak(text, slow, cb) {
@@ -234,11 +250,21 @@
     var id = ++sid, list = [], m = /^(une|un|la|le|les|des|du)\s+(.+)$/i.exec(text);
     if (slow && m) { list.push(mk(m[1], 0.5, id)); list.push(mk(m[2], 0.5, id)); } else list.push(mk(text, slow ? 0.5 : 0.8, id));
     var last = list[list.length - 1], done = false;
-    function fin() { if (done) return; done = true; if (id === sid) setSpeaking(false); if (cb && id === sid) cb(); }
-    last.onend = last.onerror = fin;
+    function fin() { if (done) return; done = true; busy = false; if (id === sid) setSpeaking(false); if (cb && id === sid) cb(); }
+    last.onend = fin;
+    last.onerror = function (e) { audioState.lastErr = (e && e.error) || 'error'; fin(); };
     setTimeout(fin, 6000);
-    function run() { list.forEach(function (u) { synth.speak(u); }); }
-    if (synth.speaking || synth.pending) { synth.cancel(); setTimeout(run, 80); } else run();
+    if (!frVoice) pickVoice();
+    utts = list.slice();
+    function run() { try { synth.resume(); } catch (e) {} list.forEach(function (u) { synth.speak(u); }); }
+    if (busy) { synth.cancel(); setTimeout(run, 150); } else run();
+    busy = true;
+    if (!audioState.hinted) setTimeout(function () {
+      if (id === sid && !audioState.startedId[id] && !audioState.hinted && !document.hidden) {
+        audioState.hinted = true;
+        toast(IS_IOS ? "Pas de son ? Monte le volume et mets l'interrupteur de silence de l'iPhone sur « sonnerie ». / ¿No suena? Sube el volumen y quita el modo silencio (interruptor lateral)." : "Pas de son ? Vérifie le volume de la tablette. / ¿No suena? Revisa el volumen.");
+      }
+    }, 3500);
   }
   function stopSpeaking() { sid++; if (synth) synth.cancel(); setSpeaking(false); }
 
@@ -294,6 +320,7 @@
         GORDER.map(function (k) { return gameBtn(k, true); }).join(''));
     }
     $('#s-map').innerHTML = h + '</div>';
+    showInstall();
     var notes = '';
     LESSONS.slice().reverse().forEach(function (l) { (l.notes || []).forEach(function (n) { notes += '<li><b>' + l.title + ':</b> ' + n + '</li>'; }); });
     $('#parent-list').innerHTML = notes;
@@ -687,8 +714,74 @@
         store.lessonsHash = h; save();
       }
       if (synth) { pickVoice(); synth.onvoiceschanged = checkVoiceNote; setTimeout(checkVoiceNote, 1200); } else checkVoiceNote();
-      applyEs(); renderMap(); screen('map');
+      applyEs(); renderMap(); screen('map'); buildDiag(); setTimeout(buildDiag, 3500);
     });
+  }
+
+  /* ---------- Instalación en la tablet: botón propio + diagnóstico (para mamá y papá) ---------- */
+  var deferredInstall = null;
+  function isStandalone() { return !!((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true); }
+  function showInstall() {
+    var b = $('#install-btn'); if (b) b.hidden = !deferredInstall || isStandalone();
+    var top = $('#s-map'), old = $('#install-banner'); if (old && old.parentNode) old.parentNode.removeChild(old);
+    if (deferredInstall && !isStandalone() && top && top.firstChild) {
+      var d = document.createElement('div'); d.id = 'install-banner'; d.style.margin = '0 0 12px';
+      d.innerHTML = '<button class="btn primary" type="button" id="install-go">Installer l\'app<span class="es">Instalar la app en la tablet</span></button>';
+      top.insertBefore(d, top.firstChild);
+    }
+  }
+  function doInstall() {
+    if (!deferredInstall) return;
+    var ev = deferredInstall; deferredInstall = null;
+    ev.prompt();
+    if (ev.userChoice && ev.userChoice.then) ev.userChoice.then(function (r) { toast(r && r.outcome === 'accepted' ? 'App installée !' : "Installation annulée."); showInstall(); buildDiag(); });
+    showInstall();
+  }
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredInstall = e; showInstall(); buildDiag(); });
+  window.addEventListener('appinstalled', function () { deferredInstall = null; showInstall(); buildDiag(); });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest) return;
+    if (e.target.closest('#install-go, #install-btn')) doInstall();
+    else if (e.target.closest('#sound-test')) { speak('Bonjour Noah ! Le nez, les yeux.', false); setTimeout(buildDiag, 3000); }
+  });
+  function browserName() {
+    var u = navigator.userAgent || '';
+    if (/FBAN|FBAV|Instagram|WhatsApp|Line\/|GSA\//i.test(u)) return 'navegador interno de otra app (no sirve para instalar)';
+    if (/SamsungBrowser/i.test(u)) return 'Samsung Internet (usa Chrome)';
+    if (/EdgA|Edg\//i.test(u)) return 'Edge';
+    if (/OPR\/|Opera/i.test(u)) return 'Opera';
+    if (/; wv\)/i.test(u)) return 'WebView (no sirve para instalar; usa Chrome)';
+    var m = /Chrome\/(\d+)/.exec(u);
+    return m ? 'Chrome ' + m[1] : 'otro navegador';
+  }
+  function buildDiag() {
+    var host = $('#parent-list'); if (!host || !host.parentNode) return;
+    var box = $('#install-box');
+    if (!box) {
+      box = document.createElement('div'); box.id = 'install-box';
+      box.innerHTML = '<p><b>Instalar la app en la tablet</b><br>Si aparece el botón de abajo, púlsalo. Si no aparece, usa el menú ⋮ de Chrome y elige «Instalar app» o «Añadir a la pantalla de inicio».</p>' +
+        '<button class="btn primary" type="button" id="install-btn" hidden>Installer l\'app</button>' +
+        '<p style="margin:10px 0 4px"><b>Sonido</b><br>Si no oyes la voz, pulsa «Probar el sonido». En iPhone/iPad, sube el volumen y desactiva el modo silencio (interruptor lateral).</p>' +
+        '<button class="btn" type="button" id="sound-test">Probar el sonido</button><pre id="diag" style="white-space:pre-wrap;font-size:.8rem;margin:8px 0 0"></pre>';
+      host.parentNode.appendChild(box);
+    }
+    var ua = navigator.userAgent || '', desk = !/Android|iPhone|iPad/i.test(ua);
+    var lines = [
+      'Navegador: ' + browserName(),
+      'Modo ordenador: ' + (desk ? 'SÍ (desactívalo en ⋮ > Sitio para ordenador)' : 'no'),
+      'Conexión segura: ' + (window.isSecureContext ? 'sí' : 'NO'),
+      'App ya instalada/abierta como app: ' + (isStandalone() ? 'sí' : 'no'),
+      'Chrome ofrece instalar ahora: ' + (deferredInstall ? 'SÍ (botón disponible)' : 'todavía no'),
+      'Dispositivo Apple (iPhone/iPad): ' + (IS_IOS ? 'sí' : 'no'),
+      'Voz de síntesis disponible: ' + (synth ? 'sí' : 'NO (este navegador no la tiene)'),
+      'Voces en francés: ' + (frList ? frList.length : 0) + (frVoice ? ' · elegida: ' + frVoice.name + ' (' + frVoice.lang + ')' : ' · ninguna (usa la voz por defecto)'),
+      'Audios iniciados: ' + audioState.started + (audioState.lastErr ? ' · último error: ' + audioState.lastErr : '')
+    ];
+    var d = $('#diag'); if (d) d.textContent = lines.join('\n');
+    showInstall();
+    if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) navigator.serviceWorker.getRegistrations().then(function (r) {
+      var dd = $('#diag'); if (dd && dd.textContent.indexOf('Modo offline') < 0) dd.textContent += '\nModo sin internet (service worker): ' + (r.length ? 'activo' : 'no activo todavía');
+    }).catch(function () {});
   }
   if ('serviceWorker' in navigator) { window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); }); }
   boot();
