@@ -168,6 +168,7 @@
   var frVoice = null, frList = [], sid = 0, lastSay = 'le nez';
   function voiceScore(v) {
     var s = 0, n = v.name || '';
+    if (/jacques/i.test(n)) s += 1000;
     if (/^fr[-_]FR$/i.test(v.lang)) s += 100; else if (/^fr([-_]|$)/i.test(v.lang)) s += 30;
     if (/natural|neural|online/i.test(n)) s += 50;
     if (/premium|enhanced|siri|am[eé]lie|thomas/i.test(n)) s += 35;
@@ -181,17 +182,7 @@
     var vs = synth.getVoices() || [];
     frList = vs.filter(function (v) { return /^fr([-_]|$)/i.test(v.lang) || /fran[cç]/i.test(v.name); })
       .sort(function (a, b) { return voiceScore(b) - voiceScore(a); });
-    var pref = store.voiceName ? frList.filter(function (v) { return v.name === store.voiceName; })[0] : null;
-    frVoice = pref || frList[0] || null;
-    var sel = $('#vsel'); sel.innerHTML = '';
-    frList.forEach(function (v) {
-      var o = document.createElement('option'); o.value = v.name; o.textContent = v.name + ' (' + v.lang + ')';
-      if (frVoice && v.name === frVoice.name) o.selected = true; sel.appendChild(o);
-    });
-    sel.disabled = !frList.length;
-    var france = frVoice && /^fr[-_]FR$/i.test(frVoice.lang);
-    $('#vcur').textContent = frVoice ? 'Voz actual: ' + frVoice.name + ' (' + frVoice.lang + ')' + (france ? '' : '. No es una voz de Francia: instala una voz «Français (France)» en los ajustes de voz de Android para una pronunciación más fiel.')
-      : 'No hay ninguna voz francesa instalada en este dispositivo.';
+    frVoice = frList[0] || null;
     return vs.length;
   }
   function checkVoiceNote() { var n = pickVoice(); $('#voice-note').hidden = !(!synth || (n > 0 && !frVoice)); }
@@ -634,8 +625,6 @@
     else if (t.closest('#fig')) onFig(e);
   });
 
-  $('#vsel').addEventListener('change', function () { store.voiceName = this.value; save(); pickVoice(); });
-  $('#vtest').addEventListener('click', function () { speak('le nez', false); setTimeout(function () { speak('les yeux', false); }, 2200); });
 
   /* ---------- Carga de lecciones: siempre intenta bajar la última versión ---------- */
   var LKEY = KEY + '-lessons';
