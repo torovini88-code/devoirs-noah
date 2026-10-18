@@ -408,6 +408,125 @@
     '<path d="M104 52 C98 40 106 30 120 30 C134 30 142 40 136 52 C140 82 152 102 162 128 C176 164 162 206 120 206 C78 206 64 164 78 128 C88 102 100 82 104 52 Z" fill="#e8b04a"/>' +
     '<path d="M120 62 V202 M100 96 C90 140 94 176 106 198 M140 96 C150 140 146 176 134 198" fill="none" stroke="#b9822a" stroke-width="3" opacity=".6"/>' +
     '<path d="M104 52 C98 40 106 30 120 30 C134 30 142 40 136 52 Z" fill="#7a8a3a"/>' + hl('M88 136 C82 156 86 176 96 190'));
+  /* ---------- Dessins des mots: Halloween (page 10) ---------- */
+  function sparkle(x, y, s, col) {
+    return '<path d="M0 -10 L3 -3 L10 0 L3 3 L0 10 L-3 3 L-10 0 L-3 -3 Z" transform="translate(' + x + ' ' + y + ') scale(' + s + ')" fill="' + (col || '#ffd23f') + '" stroke-width="3"/>';
+  }
+  ART['sorcière'] = wrap('#efe3ff', shadow(62) +
+    '<path d="M92 128 H148 L172 208 H68 Z" fill="#6a4aa8"/>' +
+    '<path d="M96 100 C88 128 94 144 104 152 M144 100 C152 128 146 144 136 152" fill="none" stroke="#7a3f1f" stroke-width="10"/>' +
+    '<circle cx="120" cy="104" r="26" fill="#f6d3b8"/>' +
+    '<circle cx="110" cy="106" r="3" fill="' + INK + '" stroke="none"/><circle cx="130" cy="106" r="3" fill="' + INK + '" stroke="none"/>' +
+    '<path d="M110 117 Q120 125 130 117" fill="none" stroke-width="3.5"/>' +
+    '<path d="M98 132 L142 132" fill="none" stroke="#ffc940" stroke-width="7"/>' +
+    '<ellipse cx="120" cy="86" rx="50" ry="11" fill="#2f2a54"/>' +
+    '<path d="M94 84 C102 58 112 38 128 16 C132 40 142 62 146 84 Z" fill="#3a3270"/>' +
+    '<path d="M95 76 H145" fill="none" stroke="#ffc940" stroke-width="8"/>');
+  ART['balai'] = wrap('#fff0d6', shadow(70) +
+    '<g transform="rotate(-40 120 120)">' +
+    '<rect x="112" y="16" width="16" height="136" rx="8" fill="#b57a3e"/>' +
+    '<path d="M94 146 H146 L158 214 H82 Z" fill="#e8c35a"/>' +
+    '<path d="M94 146 H146 V162 H94 Z" fill="#8a5a2b"/>' +
+    '<path d="M102 176 L98 210 M114 170 L112 212 M126 170 L128 212 M138 176 L142 210" fill="none" stroke-width="3" opacity=".55"/>' +
+    '</g>');
+  ART['monstre'] = wrap('#e4f7e0', shadow(70) +
+    '<path d="M80 72 L64 32 L102 58 Z" fill="#ffd23f"/><path d="M160 72 L176 32 L138 58 Z" fill="#ffd23f"/>' +
+    '<path d="M120 52 C176 50 198 100 192 150 C188 190 164 208 120 208 C76 208 52 190 48 150 C42 100 64 50 120 52 Z" fill="#7fcf6a"/>' +
+    '<circle cx="92" cy="106" r="18" fill="#fff"/><circle cx="148" cy="106" r="18" fill="#fff"/>' +
+    '<circle cx="96" cy="108" r="7" fill="' + INK + '" stroke="none"/><circle cx="144" cy="108" r="7" fill="' + INK + '" stroke="none"/>' +
+    '<path d="M80 148 Q120 188 160 148 Z" fill="#fff"/>' +
+    '<path d="M98 154 V168 M114 160 V176 M128 160 V176 M144 154 V168" fill="none" stroke-width="3"/>' + hl('M66 120 C62 138 64 156 70 168'));
+  ART['fantôme'] = wrap('#e6e9ff', shadow(60) +
+    '<path d="M62 208 V112 C62 58 96 34 120 34 C144 34 178 58 178 112 V208 L158 190 L139 210 L120 190 L101 210 L82 190 Z" fill="#fff"/>' +
+    '<ellipse cx="100" cy="104" rx="8" ry="12" fill="' + INK + '" stroke="none"/><ellipse cx="140" cy="104" rx="8" ry="12" fill="' + INK + '" stroke="none"/>' +
+    '<circle cx="86" cy="130" r="8" fill="#ffc2d1" stroke="none"/><circle cx="154" cy="130" r="8" fill="#ffc2d1" stroke="none"/>' +
+    '<ellipse cx="120" cy="140" rx="9" ry="12" fill="' + INK + '" stroke="none"/>' + hl('M78 80 C74 96 74 110 78 124'));
+  ART['araignée'] = wrap('#f1e9ff',
+    '<path d="M120 10 V86" fill="none" stroke-width="3"/>' +
+    '<path d="M100 120 C70 98 46 106 34 134 M98 130 C66 126 44 142 40 170 M104 142 C80 152 62 178 66 206 M112 150 C100 172 94 194 98 216" fill="none" stroke-width="6"/>' +
+    '<path d="M140 120 C170 98 194 106 206 134 M142 130 C174 126 196 142 200 170 M136 142 C160 152 178 178 174 206 M128 150 C140 172 146 194 142 216" fill="none" stroke-width="6"/>' +
+    '<ellipse cx="120" cy="152" rx="34" ry="40" fill="#7a5fb0"/>' +
+    '<circle cx="120" cy="108" r="24" fill="#7a5fb0"/>' +
+    '<circle cx="110" cy="104" r="7" fill="#fff" stroke-width="3"/><circle cx="130" cy="104" r="7" fill="#fff" stroke-width="3"/>' +
+    '<circle cx="111" cy="105" r="2.6" fill="' + INK + '" stroke="none"/><circle cx="129" cy="105" r="2.6" fill="' + INK + '" stroke="none"/>' +
+    '<circle cx="120" cy="156" r="9" fill="#ff7a7a" stroke-width="3"/>');
+  ART['chat noir'] = wrap('#fff0dc', shadow(64) +
+    limb('M164 198 C214 198 214 140 190 122', 14, '#3b3566') +
+    '<path d="M76 208 C60 152 80 112 120 112 C160 112 180 152 164 208 Z" fill="#3b3566"/>' +
+    '<ellipse cx="96" cy="208" rx="16" ry="8" fill="#3b3566"/><ellipse cx="144" cy="208" rx="16" ry="8" fill="#3b3566"/>' +
+    '<path d="M78 92 L74 46 L100 66 C112 62 128 62 140 66 L166 46 L162 92 C166 122 142 138 120 138 C98 138 74 122 78 92 Z" fill="#3b3566"/>' +
+    '<path d="M82 62 L91 72 L82 82 Z M158 62 L149 72 L158 82 Z" fill="#ff9fb3" stroke="none"/>' +
+    '<ellipse cx="102" cy="96" rx="9" ry="11" fill="#ffd23f" stroke-width="3"/><ellipse cx="138" cy="96" rx="9" ry="11" fill="#ffd23f" stroke-width="3"/>' +
+    '<path d="M102 88 V104 M138 88 V104" fill="none" stroke-width="4"/>' +
+    '<path d="M114 112 H126 L120 120 Z" fill="#ff9fb3" stroke-width="3"/>' +
+    '<path d="M108 128 Q114 132 120 126 Q126 132 132 128" fill="none" stroke="#fff" stroke-width="3"/>' +
+    '<path d="M88 116 L58 110 M88 124 L58 128 M152 116 L182 110 M152 124 L182 128" fill="none" stroke="#fff" stroke-width="3"/>');
+  ART['maison hantée'] = wrap('#e6dcf7', shadow(90) +
+    '<circle cx="46" cy="52" r="17" fill="#fff3b0"/>' +
+    '<path d="M6 206 H234 V192 A42 42 0 0 1 192 234 H48 A42 42 0 0 1 6 192 Z" fill="#5b4a8a" stroke="none"/>' +
+    '<path d="M150 206 V86 H190 V206 Z" fill="#7a5fb0"/>' +
+    '<path d="M44 206 V114 H150 V206 Z" fill="#8a6fc0"/>' +
+    '<path d="M34 116 L97 62 L160 116 Z" fill="#3a3270"/>' +
+    '<path d="M144 88 L170 36 L196 88 Z" fill="#3a3270"/>' +
+    '<rect x="62" y="130" width="22" height="28" rx="4" fill="#ffd23f" stroke-width="4"/><rect x="110" y="130" width="22" height="28" rx="4" fill="#ffd23f" stroke-width="4"/>' +
+    '<rect x="160" y="104" width="20" height="26" rx="4" fill="#ffd23f" stroke-width="4"/>' +
+    '<path d="M73 130 V158 M110 144 H132 M160 117 H180" fill="none" stroke-width="3"/>' +
+    '<path d="M84 206 V176 C84 160 110 160 110 176 V206 Z" fill="#2f2a54"/>');
+  ART['lune'] = wrap('#d9defa', shadow(70) +
+    '<circle cx="120" cy="108" r="72" fill="#fff3b0"/>' +
+    '<circle cx="96" cy="84" r="11" fill="#f0e18a" stroke-width="3"/><circle cx="144" cy="120" r="15" fill="#f0e18a" stroke-width="3"/><circle cx="102" cy="136" r="8" fill="#f0e18a" stroke-width="3"/>' +
+    cloud(96, 140, .8, '#fff') + cloud(14, 36, .55, '#fff') +
+    sparkle(200, 44, 1) + sparkle(34, 150, .8) + sparkle(204, 96, .6));
+  ART['bonbon'] = wrap('#ffe1f0', shadow(70) +
+    '<path d="M70 120 L22 86 V154 Z" fill="#ff9ec2"/><path d="M170 120 L218 86 V154 Z" fill="#ff9ec2"/>' +
+    '<ellipse cx="120" cy="120" rx="58" ry="44" fill="#ff7aa8"/>' +
+    '<path d="M88 84 C102 106 102 134 88 156 M120 76 V164 M152 84 C138 106 138 134 152 156" fill="none" stroke="#fff" stroke-width="7" opacity=".75"/>' + hl('M76 104 C72 116 74 128 80 138'));
+  ART['momie'] = wrap('#ececf6', shadow(54) +
+    limb('M90 120 L52 144', 18, '#f4efe2') + limb('M150 120 L188 144', 18, '#f4efe2') +
+    '<rect x="88" y="168" width="28" height="42" rx="10" fill="#f4efe2"/><rect x="124" y="168" width="28" height="42" rx="10" fill="#f4efe2"/>' +
+    '<rect x="86" y="102" width="68" height="84" rx="20" fill="#f4efe2"/>' +
+    '<circle cx="120" cy="70" r="31" fill="#f4efe2"/>' +
+    '<path d="M92 128 H148 M90 148 H150 M90 168 H150 M62 142 L74 134 M178 142 L166 134 M94 60 H146 M92 84 H148" fill="none" stroke-width="3.5"/>' +
+    '<rect x="94" y="62" width="52" height="18" rx="6" fill="#2f2a54"/>' +
+    '<circle cx="108" cy="71" r="5" fill="#fff" stroke="none"/><circle cx="132" cy="71" r="5" fill="#fff" stroke="none"/>' +
+    '<circle cx="109" cy="72" r="2" fill="' + INK + '" stroke="none"/><circle cx="131" cy="72" r="2" fill="' + INK + '" stroke="none"/>');
+  ART['cimetière'] = wrap('#e4e1f2',
+    '<circle cx="200" cy="52" r="18" fill="#fff3b0"/>' +
+    '<path d="M6 198 H234 V192 A42 42 0 0 1 192 234 H48 A42 42 0 0 1 6 192 Z" fill="#6b9e55" stroke="none"/>' +
+    '<path d="M52 204 V112 C52 78 112 78 112 112 V204 Z" fill="#c9ccd9"/>' +
+    '<path d="M128 204 V134 C128 106 180 106 180 134 V204 Z" fill="#b5b9ca"/>' +
+    '<path d="M205 204 V126 M189 146 H221" fill="none" stroke="#a9adc2" stroke-width="12"/>' +
+    '<text x="82" y="134" text-anchor="middle" font-family="Grandstander, Andika, sans-serif" font-size="24" font-weight="800" fill="' + INK + '" stroke="none">RIP</text>' +
+    '<text x="154" y="156" text-anchor="middle" font-family="Grandstander, Andika, sans-serif" font-size="21" font-weight="800" fill="' + INK + '" stroke="none">RIP</text>' +
+    '<path d="M20 198 L24 184 L30 198 M96 200 L100 188 L106 200 M214 200 L218 190 L224 200" fill="none" stroke="#3f7a3a" stroke-width="4"/>');
+  ART['os'] = wrap('#f4efe2', shadow(80) +
+    '<g transform="rotate(-30 120 120)">' +
+    '<g stroke-width="10"><circle cx="62" cy="104" r="17"/><circle cx="62" cy="136" r="17"/><circle cx="178" cy="104" r="17"/><circle cx="178" cy="136" r="17"/><rect x="62" y="108" width="116" height="24" rx="6"/></g>' +
+    '<g stroke="none" fill="#fff"><circle cx="62" cy="104" r="17"/><circle cx="62" cy="136" r="17"/><circle cx="178" cy="104" r="17"/><circle cx="178" cy="136" r="17"/><rect x="62" y="108" width="116" height="24" rx="6"/></g>' +
+    '</g>');
+  ART['sac'] = wrap('#fff0d6', shadow(70) +
+    limb('M92 88 C90 30 150 30 148 88', 8, '#8a5a2b') +
+    '<path d="M62 84 H178 L188 208 H52 Z" fill="#f2a63e"/>' +
+    '<path d="M62 84 H178 V104 H62 Z" fill="#e8902a"/>' +
+    '<path d="M92 130 L110 130 L101 148 Z M130 130 L148 130 L139 148 Z" fill="' + INK + '"/>' +
+    '<path d="M88 166 Q120 194 152 166 L142 164 L131 174 L120 166 L109 174 L98 164 Z" fill="' + INK + '"/>' + hl('M72 120 C70 150 70 176 74 196'));
+  ART['bougie'] = wrap('#fff6d9', shadow(60) +
+    '<ellipse cx="120" cy="206" rx="56" ry="13" fill="#c9a24a"/>' +
+    '<path d="M92 92 H148 V200 C148 210 92 210 92 200 Z" fill="#fff8e8"/>' +
+    '<ellipse cx="120" cy="92" rx="28" ry="9" fill="#ffe9a8"/>' +
+    '<path d="M96 96 V126 C96 136 108 136 108 126 V100 Z M132 100 V146 C132 156 144 156 144 146 V96 Z" fill="#ffe9a8" stroke-width="4"/>' +
+    '<path d="M120 86 V72" fill="none" stroke-width="5"/>' +
+    '<path d="M120 20 C142 44 144 66 120 74 C96 66 98 44 120 20 Z" fill="#ffb02e"/>' +
+    '<path d="M120 46 C131 57 131 67 120 70 C109 67 109 57 120 46 Z" fill="#fff3b0" stroke="none"/>');
+  ART['dent'] = wrap('#e0f3ff', shadow(60) +
+    '<path d="M72 76 C72 50 100 44 120 54 C140 44 168 50 168 76 C168 106 156 118 154 152 C152 186 146 208 134 208 C122 208 124 162 120 162 C116 162 118 208 106 208 C94 208 88 186 86 152 C84 118 72 106 72 76 Z" fill="#fff"/>' + hl('M88 72 C86 90 92 104 96 116') +
+    sparkle(196, 54, .9) + sparkle(42, 70, .7));
+  ART['baguette'] = wrap('#efe3ff',
+    '<g transform="rotate(40 120 120)">' +
+    '<rect x="112" y="76" width="16" height="132" rx="7" fill="#3a3270"/>' +
+    '<rect x="112" y="126" width="16" height="12" fill="#ffd23f"/><rect x="112" y="174" width="16" height="12" fill="#ffd23f"/>' +
+    '<path d="M120 12 L132 44 L166 46 L140 66 L149 98 L120 80 L91 98 L100 66 L74 46 L108 44 Z" fill="#ffd23f"/>' +
+    '</g>' + sparkle(52, 56, 1, '#ffffff') + sparkle(196, 150, .8) + sparkle(46, 150, .6));
   var DMAP = {};
   DICTEE.forEach(function (d) { DMAP[d.noun] = d.svg; });
 
@@ -506,15 +625,18 @@
   var U = { 1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'cinq', 6: 'six', 7: 'sept', 8: 'huit', 9: 'neuf' };
   var TEEN = ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf'];
   function numWord(n) {
+    if (n === 100) return 'cent';
     var t = Math.floor(n / 10), u = n % 10;
     if (n === 80) return 'quatre-vingts';
+    if (t === 8) return 'quatre-vingt-' + U[u];
+    if (t === 9) return 'quatre-vingt-' + TEEN[u];
     if (t === 4) return 'quarante' + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
     if (t === 5) return 'cinquante' + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
     if (t === 6) return 'soixante' + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
     return 'soixante-' + (u === 1 ? 'et-' : '') + TEEN[u];
   }
   function numSVG(n) {
-    var t = Math.floor(n / 10), u = n % 10, step = t > 6 ? 19 : 25, rw = t > 6 ? 15 : 20, cs = 20, cols = u >= 3 ? 3 : u;
+    var t = Math.floor(n / 10), u = n % 10, step = t > 7 ? 15 : t > 6 ? 19 : 25, rw = t > 7 ? 11 : t > 6 ? 15 : 20, cs = 20, cols = u >= 3 ? 3 : u;
     if (n === 80) { t = 8; u = 0; cols = 0; }
     var rodsW = t * step - (step - rw), unitsW = u ? cols * cs - (cs - 16) : 0, gap = u ? 18 : 0;
     var x0 = (240 - (rodsW + gap + unitsW)) / 2, s = '', i, k;

@@ -1,5 +1,5 @@
 {
- "current": "corps-2026-10-12",
+ "current": "halloween-2026-10-19",
  "lessons": [
   {
    "id": "automne-2026-10-05",
@@ -670,6 +670,238 @@
    "notes": [
     "Hoja de la Madame Devina (clase 701), semana del 12 al 16 de octubre: copiar todas las palabras del lexique «Les parties du corps» (págs. 12 y 13), escribir 5 frases, dictée el jueves y números de la p. 75.",
     "La hoja dice 60 a 80, pero la lista empieza en 52 porque Noah no terminó la tarea anterior desde ahí."
+   ]
+  },
+  {
+   "id": "halloween-2026-10-19",
+   "date": "2026-10-19",
+   "title": "Halloween",
+   "subtitle": "Semaine du 19 au 23 octobre",
+   "due": "Pour lundi 19 octobre",
+   "dictationDay": "jeudi 22 octobre",
+   "words": [
+    {
+     "art": "une",
+     "noun": "sorcière",
+     "es": "bruja",
+     "page": 10,
+     "pic": "art:sorcière",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "balai",
+     "es": "escoba",
+     "page": 10,
+     "pic": "art:balai",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "monstre",
+     "es": "monstruo",
+     "page": 10,
+     "pic": "art:monstre",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "fantôme",
+     "es": "fantasma",
+     "page": 10,
+     "pic": "art:fantôme",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "araignée",
+     "es": "araña",
+     "page": 10,
+     "pic": "art:araignée",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "chat noir",
+     "es": "gato negro",
+     "page": 10,
+     "pic": "art:chat noir",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "maison hantée",
+     "es": "casa embrujada",
+     "page": 10,
+     "pic": "art:maison hantée",
+     "dict": true
+    },
+    {
+     "art": "la",
+     "noun": "lune",
+     "es": "luna",
+     "page": 10,
+     "pic": "art:lune",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "hibou",
+     "es": "búho",
+     "page": 10,
+     "pic": "art:hibou",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "bonbon",
+     "es": "caramelo",
+     "page": 10,
+     "pic": "art:bonbon",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "citrouille",
+     "es": "calabaza",
+     "page": 10,
+     "pic": "art:citrouille",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "momie",
+     "es": "momia",
+     "page": 10,
+     "pic": "art:momie"
+    },
+    {
+     "art": "un",
+     "noun": "cimetière",
+     "es": "cementerio",
+     "page": 10,
+     "pic": "art:cimetière"
+    },
+    {
+     "art": "une",
+     "noun": "feuille",
+     "es": "hoja",
+     "page": 10,
+     "pic": "art:feuille"
+    },
+    {
+     "art": "un",
+     "noun": "os",
+     "es": "hueso",
+     "page": 10,
+     "pic": "art:os"
+    },
+    {
+     "art": "un",
+     "noun": "sac",
+     "es": "bolsa",
+     "page": 10,
+     "pic": "art:sac",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "bougie",
+     "es": "vela",
+     "page": 10,
+     "pic": "art:bougie"
+    },
+    {
+     "art": "une",
+     "noun": "dent",
+     "es": "diente",
+     "page": 10,
+     "pic": "art:dent"
+    },
+    {
+     "art": "une",
+     "noun": "chauve-souris",
+     "es": "murciélago",
+     "page": 10,
+     "pic": "art:chauve-souris",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "baguette",
+     "es": "varita mágica",
+     "page": 10,
+     "pic": "art:baguette"
+    }
+   ],
+   "numbers": {
+    "from": 80,
+    "to": 100,
+    "page": 75
+   },
+   "phrases": [
+    {
+     "pre": "Dans la maison hantée, il y a ",
+     "post": ".",
+     "es": "En la casa embrujada hay…",
+     "chips": [
+      "un fantôme",
+      "une araignée",
+      "un monstre",
+      "une momie",
+      "une bougie"
+     ]
+    },
+    {
+     "pre": "La sorcière a ",
+     "post": ".",
+     "es": "La bruja tiene…",
+     "chips": [
+      "un balai",
+      "une baguette",
+      "un chat noir",
+      "un hibou",
+      "une citrouille"
+     ]
+    },
+    {
+     "pre": "Dans mon sac, il y a ",
+     "post": ".",
+     "es": "En mi bolsa hay…",
+     "chips": [
+      "un bonbon",
+      "une baguette",
+      "une bougie",
+      "une feuille"
+     ]
+    },
+    {
+     "pre": "Dans le cimetière, je vois ",
+     "post": ".",
+     "es": "En el cementerio veo…",
+     "chips": [
+      "la lune",
+      "un fantôme",
+      "un os",
+      "une chauve-souris",
+      "un hibou"
+     ]
+    },
+    {
+     "pre": "Dans la nuit, je vois ",
+     "post": ".",
+     "es": "En la noche veo…",
+     "chips": [
+      "la lune",
+      "une chauve-souris",
+      "un chat noir",
+      "un fantôme"
+     ]
+    }
+   ],
+   "notes": [
+    "Hoja de la semana del 19 al 23 de octubre de 2026: copiar todas las palabras del lexique «Halloween» (p. 10) para el lunes 19, escribir 5 frases con palabras de la página, estudiar 13 palabras para la dictée y copiar los números del 80 al 100 (p. 75).",
+    "La hoja no indica el día de la dictée en lo que se ve en la foto; se puso «jeudi 22 octobre» como en las semanas anteriores."
    ]
   }
  ]

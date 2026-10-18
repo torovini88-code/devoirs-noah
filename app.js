@@ -112,7 +112,7 @@
       var items = [];
       for (var n = l.numbers.from; n <= l.numbers.to; n++) {
         var t = Math.floor(n / 10), u = n % 10, word = PICS.numWord(n), sub;
-        if (n === 80) sub = '4 × 20'; else if (t >= 7) sub = '60 + ' + (10 + u); else sub = t + ' dizaines' + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : '');
+        if (n === 100) sub = '10 dizaines'; else if (n === 80) sub = '4 × 20'; else if (t === 8) sub = '4 × 20 + ' + u; else if (t === 9) sub = '4 × 20 + ' + (10 + u); else if (t >= 7) sub = '60 + ' + (10 + u); else sub = t + ' dizaines' + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : '');
         items.push({ svg: PICS.numSVG(n), alt: t + ' bâtons bleus et ' + u + ' cubes jaunes',
           wordHTML: '<span class="digits"><span class="t">' + t + '</span><span class="u">' + u + '</span></span><span class="nw">' + word + '</span>', sub: sub, speak: word.replace(/-/g, ' ') });
       }
@@ -180,7 +180,7 @@
     return PICS.jours.map(function (j, n) { return { kind: 'day', i: n, lid: 'day', svg: j.svg, tap: null, art: '', noun: j.word, say: j.word, es: j.es, picKey: 'day:' + n }; });
   }
   function mixBuckets() {
-    var b = LESSONS.map(function (l) { return l.words; });
+    var seen = {}, b = LESSONS.map(function (l) { return l.words.filter(function (w) { if (seen[w.say]) return false; seen[w.say] = 1; return true; }); });
     b.push(numberWords()); b.push(dayWords());
     return b.filter(function (x) { return x.length; });
   }
