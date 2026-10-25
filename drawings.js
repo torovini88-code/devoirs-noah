@@ -527,6 +527,56 @@
     '<rect x="112" y="126" width="16" height="12" fill="#ffd23f"/><rect x="112" y="174" width="16" height="12" fill="#ffd23f"/>' +
     '<path d="M120 12 L132 44 L166 46 L140 66 L149 98 L120 80 L91 98 L100 66 L74 46 L108 44 Z" fill="#ffd23f"/>' +
     '</g>' + sparkle(52, 56, 1, '#ffffff') + sparkle(196, 150, .8) + sparkle(46, 150, .6));
+  /* ---------- Dessins des mots: la dictée d'Halloween (26 au 30 octobre) ---------- */
+  function kid(x, y, s, shirt, hair) {
+    return '<g transform="translate(' + x + ' ' + y + ') scale(' + s + ')">' +
+      '<rect x="-11" y="-32" width="9" height="32" rx="4" fill="#3b3566"/><rect x="2" y="-32" width="9" height="32" rx="4" fill="#3b3566"/>' +
+      limb('M-15 -64 L-26 -40', 8, '#f6d3b8') + limb('M15 -64 L26 -40', 8, '#f6d3b8') +
+      '<rect x="-17" y="-74" width="34" height="46" rx="12" fill="' + shirt + '"/>' +
+      '<circle cx="0" cy="-92" r="20" fill="#f6d3b8"/>' +
+      '<path d="M-21 -94 C-22 -121 22 -121 21 -94 C14 -104 -14 -104 -21 -94 Z" fill="' + hair + '"/>' +
+      '<circle cx="-7" cy="-90" r="2.6" fill="' + INK + '" stroke="none"/><circle cx="7" cy="-90" r="2.6" fill="' + INK + '" stroke="none"/>' +
+      '<path d="M-7 -82 Q0 -75 7 -82" fill="none" stroke-width="3.5"/></g>';
+  }
+  ART['Halloween'] = wrap('#e6dcf7', shadow(80) +
+    '<circle cx="190" cy="52" r="20" fill="#fff3b0"/>' + sparkle(48, 54, 1) + sparkle(204, 112, .6) +
+    '<ellipse cx="80" cy="140" rx="38" ry="54" fill="#f5993f"/><ellipse cx="160" cy="140" rx="38" ry="54" fill="#f5993f"/>' +
+    '<ellipse cx="120" cy="138" rx="42" ry="60" fill="#f28a2e"/>' +
+    '<path d="M110 82 C108 66 112 56 124 48 L138 56 C132 62 130 72 130 84 Z" fill="#4f8f3f"/>' +
+    '<path d="M94 118 L110 118 L102 100 Z M130 118 L146 118 L138 100 Z" fill="#ffd23f" stroke-width="4"/>' +
+    '<path d="M120 126 L114 138 H126 Z" fill="#ffd23f" stroke-width="4"/>' +
+    '<path d="M90 150 L102 164 L110 152 L120 166 L130 152 L138 164 L150 150 Q120 188 90 150 Z" fill="#ffd23f" stroke-width="4"/>' + hl('M70 116 C64 132 66 148 72 160'));
+  ART['Léa'] = wrap('#ffe9f2', shadow(60) +
+    '<g transform="translate(120 208) scale(1.5)"><path d="M-22 -94 C-32 -62 -22 -48 -14 -48 H14 C22 -48 32 -62 22 -94 Z" fill="#7a3f1f"/></g>' +
+    kid(120, 208, 1.5, '#ff8fb1', '#7a3f1f') +
+    '<g transform="translate(120 208) scale(1.5)"><path d="M14 -110 L30 -120 L30 -100 Z M14 -110 L-2 -120 L-2 -100 Z" fill="#ff5c8a" stroke-width="3"/><circle cx="14" cy="-110" r="4" fill="#ff5c8a" stroke-width="3"/></g>');
+  ART['costume'] = wrap('#efe3ff', shadow(70) +
+    '<path d="M120 52 C120 36 140 34 140 24 C140 14 124 12 120 24" fill="none" stroke-width="6"/>' +
+    '<path d="M120 52 L44 100 H196 Z" fill="none" stroke-width="6"/>' +
+    '<path d="M54 100 H186 L212 216 H28 Z" fill="#6a4aa8"/>' +
+    '<path d="M94 100 L120 132 L146 100 Z" fill="#ffd23f"/>' +
+    '<circle cx="120" cy="150" r="5" fill="#ffd23f" stroke-width="3"/><circle cx="120" cy="172" r="5" fill="#ffd23f" stroke-width="3"/>' +
+    sparkle(70, 160, 1.3, '#ffd23f') + sparkle(172, 188, 1.1, '#ffd23f') + sparkle(176, 142, .8, '#ffd23f'));
+  ART['ami'] = wrap('#e3f0ff', shadow(90) +
+    kid(78, 206, 1.1, '#4f6df5', '#3b2a1a') + kid(162, 206, 1.1, '#ffc940', '#c0392b') +
+    limb('M104 142 L136 142', 9, '#f6d3b8') + '<circle cx="120" cy="142" r="7" fill="#f6d3b8" stroke-width="3"/>' +
+    '<path d="M120 36 C108 24 94 36 106 48 L120 60 L134 48 C146 36 132 24 120 36 Z" fill="#ff6b81" stroke-width="4"/>');
+  ART['masque'] = wrap('#ffe9f2', shadow(70) +
+    '<path d="M28 92 L44 100 M212 92 L196 100" fill="none" stroke-width="5"/>' +
+    '<path d="M40 100 C40 70 90 68 120 84 C150 68 200 70 200 100 C200 144 160 152 140 132 C130 122 110 122 100 132 C80 152 40 144 40 100 Z" fill="#7a5fb0"/>' +
+    '<path d="M62 100 C70 86 94 86 104 102 C92 116 70 116 62 100 Z M136 102 C146 86 170 86 178 100 C170 116 148 116 136 102 Z" fill="#ffe9f2"/>' +
+    '<path d="M120 96 L112 108 H128 Z" fill="#5b4a8a" stroke-width="3"/>' +
+    sparkle(52, 126, .7) + sparkle(190, 126, .7) + sparkle(120, 62, .9));
+  ART['enfants'] = wrap('#e4f5e8', shadow(96) +
+    kid(56, 208, .95, '#ff7a7a', '#7a3f1f') + kid(184, 208, .95, '#3fb58a', '#3b2a1a') + kid(120, 212, 1.15, '#4f6df5', '#c0392b'));
+  ART['dehors'] = wrap('#dff1ff',
+    '<circle cx="196" cy="48" r="20" fill="#ffd23f"/>' + cloud(14, 8, .5, '#fff') +
+    '<path d="M6 190 H234 V192 A42 42 0 0 1 192 234 H48 A42 42 0 0 1 6 192 Z" fill="#7fc455" stroke="none"/>' +
+    '<rect x="22" y="104" width="82" height="88" fill="#f5d9a8"/><path d="M12 108 L63 60 L114 108 Z" fill="#d84a43"/>' +
+    '<rect x="44" y="134" width="30" height="58" fill="#2f2a54"/><path d="M74 134 L94 142 V188 L74 192 Z" fill="#b57a3e"/>' +
+    '<rect x="196" y="132" width="14" height="60" fill="#9a6a3c"/><circle cx="203" cy="112" r="32" fill="#f08a3c"/>' +
+    kid(144, 204, .8, '#4f6df5', '#87552f') +
+    '<path d="M96 168 H120 M112 160 L122 168 L112 176" fill="none" stroke-width="5"/>');
   var DMAP = {};
   DICTEE.forEach(function (d) { DMAP[d.noun] = d.svg; });
 
@@ -624,21 +674,28 @@
 
   var U = { 1: 'un', 2: 'deux', 3: 'trois', 4: 'quatre', 5: 'cinq', 6: 'six', 7: 'sept', 8: 'huit', 9: 'neuf' };
   var TEEN = ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf'];
+  var TENS = { 2: 'vingt', 3: 'trente', 4: 'quarante', 5: 'cinquante', 6: 'soixante' };
   function numWord(n) {
     if (n === 100) return 'cent';
+    if (n === 0) return 'zéro';
+    if (n < 10) return U[n];
+    if (n < 20) return TEEN[n - 10];
     var t = Math.floor(n / 10), u = n % 10;
     if (n === 80) return 'quatre-vingts';
+    if (t >= 2 && t <= 6) return TENS[t] + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
+    if (t === 7) return 'soixante-' + (u === 1 ? 'et-' : '') + TEEN[u];
     if (t === 8) return 'quatre-vingt-' + U[u];
-    if (t === 9) return 'quatre-vingt-' + TEEN[u];
-    if (t === 4) return 'quarante' + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
-    if (t === 5) return 'cinquante' + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
-    if (t === 6) return 'soixante' + (u === 1 ? '-et-un' : u ? '-' + U[u] : '');
-    return 'soixante-' + (u === 1 ? 'et-' : '') + TEEN[u];
+    return 'quatre-vingt-' + TEEN[u];
   }
   function numSVG(n) {
     var t = Math.floor(n / 10), u = n % 10, step = t > 7 ? 15 : t > 6 ? 19 : 25, rw = t > 7 ? 11 : t > 6 ? 15 : 20, cs = 20, cols = u >= 3 ? 3 : u;
     if (n === 80) { t = 8; u = 0; cols = 0; }
-    var rodsW = t * step - (step - rw), unitsW = u ? cols * cs - (cs - 16) : 0, gap = u ? 18 : 0;
+    if (!t) {
+      var cc = u >= 3 ? 3 : u, rr = Math.ceil(u / 3), sz = 40, gp = 10, cw = cc * sz + (cc - 1) * gp, ch = rr * sz + (rr - 1) * gp, bx = (240 - cw) / 2, by = (240 - ch) / 2, big = '', q;
+      for (q = 0; q < u; q++) big += '<rect x="' + (bx + (q % 3) * (sz + gp)) + '" y="' + (by + Math.floor(q / 3) * (sz + gp)) + '" width="' + sz + '" height="' + sz + '" rx="8" fill="#ffc940" stroke="' + INK + '" stroke-width="4"/>';
+      return '<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="4" width="232" height="232" rx="40" fill="#e3f7ee"/>' + big + '</svg>';
+    }
+    var rodsW = t ? t * step - (step - rw) : 0, unitsW = u ? cols * cs - (cs - 16) : 0, gap = (u && t) ? 18 : 0;
     var x0 = (240 - (rodsW + gap + unitsW)) / 2, s = '', i, k;
     for (i = 0; i < t; i++) {
       var x = x0 + i * step;

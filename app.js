@@ -69,6 +69,7 @@
     CURRENT = LESSONS.filter(function (l) { return l.id === data.current; })[0] || LESSONS[LESSONS.length - 1];
     LESSONS.forEach(function (l) {
       l.words = l.words || [];
+      (l.dictation || []).forEach(function (s) { s.svg = PICS.resolve(s.pic, { noun: s.text }).svg; });
       l.words.forEach(function (w, i) {
         var r = PICS.resolve(w.pic, w);
         w.i = i; w.lid = l.id; w.svg = r.svg; w.tap = w.noTap ? null : r.tap;
@@ -78,6 +79,7 @@
       });
     });
   }
+  function numList(l) { var out = [], st = l.numbers.step || 1; for (var n = l.numbers.from; n <= l.numbers.to; n += st) out.push(n); return out; }
   function dictWords(l) { return l.words.filter(function (w) { return w.dict; }); }
   function pagesText(l) {
     var s = {}; l.words.forEach(function (w) { if (w.page) s[w.page] = 1; });
@@ -86,41 +88,51 @@
   }
   /* Misiones de una lección: depende de lo que tenga la lección en lessons.json */
   function mInfo(l, k) {
-    if (k === 'mots') return { ico: 'Aa', name: 'Copier les mots', sub: 'Lexique' + (pagesText(l) ? ', ' + pagesText(l) : ''), es: 'Copiar las palabras', total: l.words.length };
+    if (k === 'mots') { var um = (l.ui && l.ui.mots) || {}; return { ico: 'Aa', name: um.name || 'Copier les mots', sub: um.sub || ('Lexique' + (pagesText(l) ? ', ' + pagesText(l) : '')), es: um.es || 'Copiar las palabras', total: l.words.length }; }
     if (k === 'phrases') return { ico: 'Je.', name: '5 phrases', sub: 'Avec une majuscule et un point', es: 'Cinco frases', total: (l.phrases || []).length };
-    if (k === 'nombres') { var n = l.numbers; return { ico: String(n.from), name: 'Les nombres de ' + n.from + ' à ' + n.to, sub: 'Math' + (n.page ? ', page ' + n.page : ''), es: 'Los números del ' + n.from + ' al ' + n.to, total: n.to - n.from + 1 }; }
-    if (k === 'dictee') return { ico: 'ABC', name: 'La dictée', sub: dictWords(l).length + ' mots à étudier', es: 'El dictado', total: dictWords(l).length };
+    if (k === 'nombres') { var n = l.numbers; return { ico: String(n.from), name: n.title || ('Les nombres de ' + n.from + ' à ' + n.to), sub: 'Math' + (n.page ? ', page ' + n.page : ''), es: n.es || ('Los números del ' + n.from + ' al ' + n.to), total: numList(l).length }; }
+    if (k === 'dictee') { if (l.dictation && l.dictation.length) return { ico: 'ABC', name: 'La dictée', sub: l.dictation.length + ' phrases à étudier', es: 'El dictado: cinco frases', total: l.dictation.length }; return { ico: 'ABC', name: 'La dictée', sub: dictWords(l).length + ' mots à étudier', es: 'El dictado', total: dictWords(l).length }; }
     if (k === 'jours') return { ico: 'L–D', name: 'Les jours de la semaine', sub: 'Du lundi au dimanche', es: 'Los días de la semana', total: 7 };
   }
   function hasKind(l, k) {
     if (k === 'mots') return l.words.length > 0;
     if (k === 'phrases') return !!(l.phrases && l.phrases.length);
     if (k === 'nombres') return !!l.numbers;
-    if (k === 'dictee') return dictWords(l).length > 0;
+    if (k === 'dictee') return !!(l.dictation && l.dictation.length) || dictWords(l).length > 0;
     if (k === 'jours') return !!l.days;
     return false;
   }
   function deckOf(l, k) {
-    if (k === 'mots') return {
-      title: 'Copier les mots' + (pagesText(l) ? ', ' + pagesText(l) : ''), mode: 'copy', unit: 'Mot', next: "J'ai copié →", last: "J'ai copié ! Terminer",
-      how: "Cherche l'image dans ton livre. Copie le mot dans ton cahier maison. Puis touche « J'ai copié ».",
-      howEs: 'Busca la imagen en tu libro. Copia la palabra en tu cuaderno de casa. Luego toca «J\'ai copié».',
-      endText: 'Tu as copié les mots de ton lexique : ' + l.title + '.',
-      items: l.words.map(function (w) { return { svg: w.svg, alt: 'Dessin : ' + w.say, where: w.page ? 'Page ' + w.page : '', wordHTML: wordHTML(w), sub: w.es, speak: w.say }; })
-    };
+    if (k === 'mots') {
+      var ui = (l.ui && l.ui.mots) || {};
+      return {
+        title: ui.title || ('Copier les mots' + (pagesText(l) ? ', ' + pagesText(l) : '')), mode: 'copy', unit: 'Mot', next: "J'ai copié →", last: "J'ai copié ! Terminer",
+        how: ui.how || "Cherche l'image dans ton livre. Copie le mot dans ton cahier. Puis touche « J'ai copié ».",
+        howEs: ui.howEs || 'Busca la imagen en tu libro. Copia la palabra en tu cuaderno. Luego toca «J\'ai copié».',
+        endText: ui.endText || ('Tu as copié les mots de ton lexique : ' + l.title + '.'),
+        items: l.words.map(function (w) { return { svg: w.svg, alt: 'Dessin : ' + w.say, where: w.where || (w.page ? 'Page ' + w.page : ''), wordHTML: wordHTML(w), sub: w.es + (w.ctx ? ' · « ' + w.ctx + ' »' : ''), speak: w.say }; })
+      };
+    }
     if (k === 'nombres') {
       var items = [];
-      for (var n = l.numbers.from; n <= l.numbers.to; n++) {
+      numList(l).forEach(function (n) {
         var t = Math.floor(n / 10), u = n % 10, word = PICS.numWord(n), sub;
-        if (n === 100) sub = '10 dizaines'; else if (n === 80) sub = '4 × 20'; else if (t === 8) sub = '4 × 20 + ' + u; else if (t === 9) sub = '4 × 20 + ' + (10 + u); else if (t >= 7) sub = '60 + ' + (10 + u); else sub = t + ' dizaines' + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : '');
+        if (t === 0) sub = u + ' unité' + (u > 1 ? 's' : ''); else if (n === 100) sub = '10 dizaines'; else if (n === 80) sub = '4 × 20'; else if (t === 8) sub = '4 × 20 + ' + u; else if (t === 9) sub = '4 × 20 + ' + (10 + u); else if (t >= 7) sub = '60 + ' + (10 + u); else sub = t + ' dizaine' + (t > 1 ? 's' : '') + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : '');
         items.push({ svg: PICS.numSVG(n), alt: t + ' bâtons bleus et ' + u + ' cubes jaunes',
-          wordHTML: '<span class="digits"><span class="t">' + t + '</span><span class="u">' + u + '</span></span><span class="nw">' + word + '</span>', sub: sub, speak: word.replace(/-/g, ' ') });
-      }
-      return { title: 'Les nombres de ' + l.numbers.from + ' à ' + l.numbers.to, mode: 'reveal', unit: 'Nombre', next: 'Nombre suivant →', last: 'Terminer',
+          wordHTML: '<span class="digits">' + (t ? '<span class="t">' + t + '</span>' : '') + '<span class="u">' + u + '</span></span><span class="nw">' + word + '</span>', sub: sub, speak: word.replace(/-/g, ' ') });
+      });
+      return { title: l.numbers.title || ('Les nombres de ' + l.numbers.from + ' à ' + l.numbers.to), mode: 'reveal', unit: 'Nombre', next: 'Nombre suivant →', last: 'Terminer',
         how: "Compte les bâtons bleus (dizaines) et les cubes jaunes (unités). Quel est le nombre ? Touche l'image pour vérifier, puis écris le chiffre et le mot dans ton cahier.",
         howEs: 'Cuenta las barras azules (decenas) y los cubos amarillos (unidades). ¿Cuál es el número? Toca la imagen para comprobar y escribe la cifra y la palabra en tu cuaderno.',
         hint: 'Combien y a-t-il ? Pense, puis touche.', endText: 'Tu as écrit les nombres en chiffres et en lettres.', items: items };
     }
+    if (k === 'dictee' && l.dictation && l.dictation.length) return {
+      title: 'La dictée du ' + (l.dictationDay || 'jeudi'), mode: 'reveal', unit: 'Phrase', next: 'Phrase suivante →', last: 'Terminer', recap: true,
+      how: "J'écoute la phrase. Je l'écris dans mon cahier, avec la majuscule et le point. Je touche l'image pour vérifier.",
+      howEs: 'Escucho la frase. La escribo en mi cuaderno, con mayúscula y punto. Toco la imagen para comprobar.',
+      hint: "Écris la phrase dans ton cahier, puis touche l'image.", endText: 'Tu as étudié les ' + l.dictation.length + ' phrases de la dictée.',
+      items: l.dictation.map(function (s) { return { svg: s.svg, alt: 'Dessin : ' + s.text, wordHTML: esc(s.text), sub: s.es, speak: s.text }; })
+    };
     if (k === 'dictee') return {
       title: 'La dictée du ' + (l.dictationDay || 'jeudi'), mode: 'reveal', unit: 'Mot', next: 'Mot suivant →', last: 'Terminer', recap: true,
       how: "J'écoute le mot. Je l'écris dans mon cahier. Je touche l'image pour vérifier mon orthographe.",
@@ -167,11 +179,11 @@
     var seen = {}, out = [];
     LESSONS.forEach(function (l) {
       if (!l.numbers) return;
-      for (var n = l.numbers.from; n <= l.numbers.to; n++) {
-        if (seen[n]) continue; seen[n] = 1;
+      numList(l).forEach(function (n) {
+        if (seen[n]) return; seen[n] = 1;
         var nw = PICS.numWord(n);
         out.push({ kind: 'num', i: n, lid: 'num', svg: PICS.numSVG(n), tap: null, art: '', noun: nw, say: nw.replace(/-/g, ' '), es: String(n), picKey: 'num:' + n });
-      }
+      });
     });
     return out;
   }

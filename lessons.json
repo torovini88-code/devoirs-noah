@@ -1,5 +1,5 @@
 {
- "current": "halloween-2026-10-19",
+ "current": "dictee-halloween-2026-10-26",
  "lessons": [
   {
    "id": "automne-2026-10-05",
@@ -902,6 +902,138 @@
    "notes": [
     "Hoja de la semana del 19 al 23 de octubre de 2026: copiar todas las palabras del lexique «Halloween» (p. 10) para el lunes 19, escribir 5 frases con palabras de la página, estudiar 13 palabras para la dictée y copiar los números del 80 al 100 (p. 75).",
     "La hoja no indica el día de la dictée en lo que se ve en la foto; se puso «jeudi 22 octobre» como en las semanas anteriores."
+   ]
+  },
+  {
+   "id": "dictee-halloween-2026-10-26",
+   "date": "2026-10-26",
+   "title": "La dictée d'Halloween",
+   "subtitle": "Semaine du 26 au 30 octobre",
+   "due": "Devoirs de la semaine",
+   "dictationDay": "jeudi 29 octobre",
+   "words": [
+    {
+     "art": "l'",
+     "noun": "Halloween",
+     "es": "Halloween",
+     "pic": "art:Halloween",
+     "dict": true,
+     "where": "Phrase 1",
+     "ctx": "C'est l'Halloween."
+    },
+    {
+     "art": "",
+     "noun": "Léa",
+     "es": "Léa (nombre de niña)",
+     "pic": "art:Léa",
+     "dict": true,
+     "where": "Phrase 2",
+     "ctx": "Léa met un costume."
+    },
+    {
+     "art": "un",
+     "noun": "costume",
+     "es": "un disfraz",
+     "pic": "art:costume",
+     "dict": true,
+     "where": "Phrase 2",
+     "ctx": "Léa met un costume."
+    },
+    {
+     "art": "une",
+     "noun": "sorcière",
+     "es": "una bruja",
+     "pic": "art:sorcière",
+     "dict": true,
+     "where": "Phrase 3",
+     "ctx": "Elle est une sorcière."
+    },
+    {
+     "art": "un",
+     "noun": "ami",
+     "es": "un amigo",
+     "pic": "art:ami",
+     "dict": true,
+     "where": "Phrase 4",
+     "ctx": "Son ami porte un masque."
+    },
+    {
+     "art": "un",
+     "noun": "masque",
+     "es": "una máscara",
+     "pic": "art:masque",
+     "dict": true,
+     "where": "Phrase 4",
+     "ctx": "Son ami porte un masque."
+    },
+    {
+     "art": "les",
+     "noun": "enfants",
+     "es": "los niños",
+     "pic": "art:enfants",
+     "dict": true,
+     "where": "Phrase 5",
+     "ctx": "Les enfants vont dehors."
+    },
+    {
+     "art": "",
+     "noun": "dehors",
+     "es": "afuera",
+     "pic": "art:dehors",
+     "dict": true,
+     "where": "Phrase 5",
+     "ctx": "Les enfants vont dehors."
+    }
+   ],
+   "ui": {
+    "mots": {
+     "name": "Les mots de la dictée",
+     "sub": "Copier et apprendre",
+     "es": "Las palabras del dictado: cópialas y apréndelas",
+     "title": "Les mots de la dictée",
+     "how": "Regarde le dessin et écoute le mot. Copie-le dans ton cahier. Puis cache-le, épelle-le de mémoire et vérifie. Touche « J'ai copié ».",
+     "howEs": "Mira el dibujo y escucha la palabra. Cópiala en tu cuaderno. Luego tápala, deletréala de memoria y comprueba. Toca «J'ai copié».",
+     "endText": "Tu as copié et appris les mots de la dictée."
+    }
+   },
+   "dictation": [
+    {
+     "text": "C'est l'Halloween.",
+     "es": "Es Halloween.",
+     "pic": "art:Halloween"
+    },
+    {
+     "text": "Léa met un costume.",
+     "es": "Léa se pone un disfraz.",
+     "pic": "art:costume"
+    },
+    {
+     "text": "Elle est une sorcière.",
+     "es": "Ella es una bruja.",
+     "pic": "art:sorcière"
+    },
+    {
+     "text": "Son ami porte un masque.",
+     "es": "Su amigo lleva una máscara.",
+     "pic": "art:masque"
+    },
+    {
+     "text": "Les enfants vont dehors.",
+     "es": "Los niños salen afuera.",
+     "pic": "art:enfants"
+    }
+   ],
+   "numbers": {
+    "from": 2,
+    "to": 50,
+    "step": 2,
+    "title": "Les nombres pairs de 1 à 50",
+    "es": "Los números pares del 1 al 50"
+   },
+   "notes": [
+    "Hoja de la semana del 26 al 30 de octubre de 2026: estudiar la dictée «C'est l'Halloween. Léa met un costume. Elle est une sorcière. Son ami porte un masque. Les enfants vont dehors.» y escribir los números pares del 1 al 50 (2, 4, 6, 8…).",
+    "Esta semana no hay frases ni palabras del libro: las actividades de copiar se centran en las palabras de la dictée. Los verbos (met, porte, vont, est) se practican dentro de las frases de la dictée.",
+    "La foto no muestra el día de la dictée; se puso «jeudi 29 octobre»."
    ]
   }
  ]
