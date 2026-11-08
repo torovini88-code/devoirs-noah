@@ -90,7 +90,7 @@
   function mInfo(l, k) {
     if (k === 'mots') { var um = (l.ui && l.ui.mots) || {}; return { ico: 'Aa', name: um.name || 'Copier les mots', sub: um.sub || ('Lexique' + (pagesText(l) ? ', ' + pagesText(l) : '')), es: um.es || 'Copiar las palabras', total: l.words.length }; }
     if (k === 'phrases') return { ico: 'Je.', name: '5 phrases', sub: 'Avec une majuscule et un point', es: 'Cinco frases', total: (l.phrases || []).length };
-    if (k === 'nombres') { var n = l.numbers; return { ico: String(n.from), name: n.title || ('Les nombres de ' + n.from + ' à ' + n.to), sub: 'Math' + (n.page ? ', page ' + n.page : ''), es: n.es || ('Los números del ' + n.from + ' al ' + n.to), total: numList(l).length }; }
+    if (k === 'nombres') { var n = l.numbers; if (n.game === 'pierres') return { ico: '1·3', name: n.title || 'Les nombres impairs', sub: 'Saute de pierre en pierre', es: n.es || '', total: numList(l).length }; return { ico: String(n.from), name: n.title || ('Les nombres de ' + n.from + ' à ' + n.to), sub: 'Math' + (n.page ? ', page ' + n.page : ''), es: n.es || ('Los números del ' + n.from + ' al ' + n.to), total: numList(l).length }; }
     if (k === 'dictee') { if (l.dictation && l.dictation.length) return { ico: 'ABC', name: 'La dictée', sub: l.dictation.length + ' phrases à étudier', es: 'El dictado: cinco frases', total: l.dictation.length }; return { ico: 'ABC', name: 'La dictée', sub: dictWords(l).length + ' mots à étudier', es: 'El dictado', total: dictWords(l).length }; }
     if (k === 'jours') return { ico: 'L–D', name: 'Les jours de la semaine', sub: 'Du lundi au dimanche', es: 'Los días de la semana', total: 7 };
   }
@@ -178,7 +178,7 @@
   function numberWords() {
     var seen = {}, out = [];
     LESSONS.forEach(function (l) {
-      if (!l.numbers) return;
+      if (!l.numbers || l.numbers.mix === false) return;
       numList(l).forEach(function (n) {
         if (seen[n]) return; seen[n] = 1;
         var nw = PICS.numWord(n);
@@ -632,6 +632,84 @@
     } else { G.locked = true; later(function () { G.up = []; G.locked = false; memRender(); }, 1300); }
   }
 
+  /* ---------- Les pierres du ruisseau: nombres impairs, seulement en chiffres ---------- */
+  (function () {
+    var css = '.river{position:relative;border:3px solid var(--edge);border-radius:28px;padding:22px 14px 16px;background:repeating-linear-gradient(176deg,rgba(255,255,255,.35) 0 3px,transparent 3px 22px),linear-gradient(#bfe6ff,#7cc4f8);box-shadow:0 6px 0 var(--edge);overflow:hidden}' +
+      '.stones{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}' +
+      '.stone,.curstone{display:flex;align-items:center;justify-content:center;aspect-ratio:1.15;border-radius:48% 52% 46% 54%/56% 50% 50% 44%;border:3px solid var(--edge);background:radial-gradient(circle at 35% 28%,#f1f3f9,#b3b8ca 72%);color:#1e2250;font:800 clamp(2rem,10vw,3rem)/1 var(--font-display);box-shadow:0 6px 0 rgba(30,34,80,.35);padding:0;cursor:pointer;touch-action:manipulation;transition:transform .15s,opacity .2s}' +
+      '.stone:active{transform:translateY(3px)}' +
+      '.stone.is-ok{background:radial-gradient(circle at 35% 28%,#d6f8e8,#4fd6a0 72%);animation:stonehop .5s}' +
+      '.stone.is-bad{background:#ffd1d8;opacity:.5;transform:translateY(8px) scale(.92);cursor:default}' +
+      '.here{display:flex;flex-direction:column;align-items:center;margin-top:14px}' +
+      '.curstone{width:40%;aspect-ratio:1.5;cursor:default;font-size:clamp(1.3rem,6vw,2rem)}' +
+      '.avatar{display:block;width:72px;height:72px;border-radius:50%;overflow:hidden;border:3px solid var(--edge);background:var(--face-bg);margin-bottom:-12px;position:relative;z-index:1}' +
+      '.avatar svg{display:block;width:100%;height:100%}' +
+      '.avatar.hop{animation:stonehop .55s}' +
+      '@keyframes stonehop{0%{transform:translateY(0)}45%{transform:translateY(-22px)}100%{transform:translateY(0)}}' +
+      '.notebook{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:12px 16px;border:2px dashed var(--line-strong);border-radius:14px;background:var(--surface);font:700 1.3rem/1.4 var(--font-display)}' +
+      '.notebook b{font:600 .85rem/1 var(--font-body);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}' +
+      '.notebook span{color:var(--accent);overflow-wrap:anywhere}';
+    var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+  })();
+  function stoneOpts(t) {
+    var ev = [t + 1, t - 1, t + 3, t - 3].filter(function (n) { return n >= 2 && n <= 50; });
+    var od = [t + 2, t - 2, t + 4].filter(function (n) { return n >= 1 && n <= 49 && n !== t; });
+    return shuffle([t, shuffle(ev)[0], shuffle(od)[0]]);
+  }
+  function openStones(l) {
+    stopSpeaking();
+    var nums = numList(l), best = store.best['pierres:' + l.id] || 0;
+    G = { k: 'pierres', l: l, nums: nums, i: 0, mis: 0, hist: [], locked: true };
+    $('#g-title').textContent = 'Les pierres du ruisseau';
+    screen('game');
+    $('#g-body').innerHTML = '<div class="card setup"><p class="lead">Noah doit traverser le ruisseau ! Saute de pierre en pierre, seulement sur les nombres impairs : 1, 3, 5, 7…</p>' +
+      '<span class="es">¡Noah tiene que cruzar el arroyo! Salta de piedra en piedra, solo sobre los números impares: 1, 3, 5, 7…</span>' +
+      '<p class="how">Écris chaque nombre dans ton cahier, en chiffres. Pas besoin de l\'écrire en lettres !<span class="es">Escribe cada número en tu cuaderno, solo con cifras. ¡No hace falta escribirlo con letras!</span></p>' +
+      '<p class="best">' + (best ? 'Meilleur résultat : ' + '★'.repeat(best) + '☆'.repeat(3 - best) : "Pas encore de résultat. C'est ton premier défi !") + '</p>' +
+      '<button class="btn primary" type="button" id="st-go">Jouer</button></div>';
+  }
+  function stonesRound() {
+    var g = G;
+    if (!g || g.k !== 'pierres') return;
+    if (g.i >= g.nums.length) return stonesEnd();
+    var t = g.nums[g.i], last = g.hist.length ? g.hist[g.hist.length - 1] : null;
+    g.target = t; g.locked = false;
+    var h = '<div class="g-top"><span class="pill">Pierre <b>' + (g.i + 1) + '/' + g.nums.length + '</b></span><span class="pill">Erreurs <b id="st-mis">' + g.mis + '</b></span></div>' +
+      '<div class="progress" aria-hidden="true"><i style="width:' + Math.round(100 * g.i / g.nums.length) + '%"></i></div>' +
+      '<p class="g-prompt">Saute sur le prochain nombre impair !<small class="es">Salta al siguiente número impar</small></p>' +
+      '<div class="river"><div class="stones">';
+    stoneOpts(t).forEach(function (n) { h += '<button type="button" class="stone" data-n="' + n + '" aria-label="Pierre ' + n + '"><span>' + n + '</span></button>'; });
+    h += '</div><div class="here"><span class="avatar" id="st-av">' + FACE + '</span><span class="curstone" role="img" aria-label="' + (last === null ? 'Départ' : 'Tu es sur la pierre ' + last) + '"><span>' + (last === null ? 'Départ' : last) + '</span></span></div></div>' +
+      '<div class="notebook"><b>Mon cahier</b><span>' + (g.hist.length ? g.hist.join(', ') + ',' : '') + ' …</span></div><p class="fb" id="fb" role="status"></p>';
+    $('#g-body').innerHTML = h;
+  }
+  function onStone(btn) {
+    var g = G;
+    if (!g || g.k !== 'pierres' || g.locked || btn.disabled) return;
+    var n = +btn.getAttribute('data-n'), t = g.target, last = g.hist.length ? g.hist[g.hist.length - 1] : null;
+    if (n === t) {
+      g.locked = true; btn.classList.add('is-ok'); g.hist.push(n); g.i++;
+      doneMap(g.l, 'nombres')[g.i - 1] = true; save();
+      setFb('Bravo ! ' + n, 'ok'); speak(PICS.numWord(n), false);
+      var av = $('#st-av'); if (av) av.classList.add('hop');
+      later(stonesRound, 1300);
+    } else {
+      g.mis++; btn.classList.add('is-bad'); btn.disabled = true;
+      var m = $('#st-mis'); if (m) m.textContent = g.mis;
+      setFb(n % 2 === 0 ? 'Oh non ! ' + n + ' est un nombre pair. Cherche un nombre impair.' : (last === null ? 'Impair, mais pas le premier : on commence par 1.' : 'Impair, mais pas le prochain : après ' + last + ' vient ' + t + '.'), 'bad');
+    }
+  }
+  function stonesEnd() {
+    var g = G, stars = g.mis <= 2 ? 3 : g.mis <= 6 ? 2 : 1, bk = 'pierres:' + g.l.id;
+    stopSpeaking();
+    if (stars > (store.best[bk] || 0)) { store.best[bk] = stars; save(); }
+    $('#g-body').innerHTML = '<div class="card"><h2>Bravo Noah !</h2><div class="bigstar" role="img" aria-label="' + stars + ' étoiles sur 3">' + '★'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
+      '<p class="lead">Tu as traversé le ruisseau : ' + g.nums.length + ' pierres' + (g.mis ? ', ' + g.mis + ' erreur' + (g.mis > 1 ? 's' : '') : ', sans erreur') + '.</p>' +
+      '<p class="how">N\'oublie pas d\'écrire les nombres impairs dans ton cahier : 1, 3, 5, 7…<span class="es">No olvides escribir los números impares en tu cuaderno.</span></p>' +
+      '<button class="btn primary" type="button" id="g-again">Rejouer</button><button class="btn" type="button" id="g-home">Retour aux missions</button></div>';
+    speak('Bravo Noah !', false);
+  }
+
   /* ---------- Eventos ---------- */
   $('#face').innerHTML = FACE;
   $('#slow').innerHTML = TURTLE;
@@ -643,6 +721,7 @@
     if (g) return openGame(g, b.getAttribute('data-mix') === '1');
     var l = lessonById(b.getAttribute('data-l')), k = b.getAttribute('data-k');
     if (!l) return;
+    if (k === 'nombres' && l.numbers && l.numbers.game === 'pierres') return openStones(l);
     if (k === 'phrases') { curL = l; curK = 'phrases'; renderPhrases(); screen('phr'); } else openDeck(l, k);
   });
   $('#es-toggle').addEventListener('click', function () { store.es = !store.es; save(); applyEs(); });
@@ -691,7 +770,9 @@
       store.scope = el.getAttribute('data-scope'); save();
       document.querySelectorAll('[data-scope]').forEach(function (b) { b.setAttribute('aria-pressed', b === el ? 'true' : 'false'); });
     } else if (t.closest('#g-go')) startGame();
-    else if (t.closest('#g-again')) { var k = G.k, mx = G.mix; G = { k: k, mix: mx }; setup(); }
+    else if (t.closest('#st-go')) stonesRound();
+    else if ((el = t.closest('button.stone'))) onStone(el);
+    else if (t.closest('#g-again')) { if (G.k === 'pierres') openStones(G.l); else { var k = G.k, mx = G.mix; G = { k: k, mix: mx }; setup(); } }
     else if (t.closest('#g-home')) home();
     else if ((el = t.closest('.choice'))) onChoice(el);
     else if ((el = t.closest('.lt'))) onLetter(el);

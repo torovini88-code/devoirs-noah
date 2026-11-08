@@ -1,5 +1,5 @@
 {
- "current": "dictee-halloween-2026-10-26",
+ "current": "vetements-2026-11-09",
  "lessons": [
   {
    "id": "automne-2026-10-05",
@@ -1034,6 +1034,349 @@
     "Hoja de la semana del 26 al 30 de octubre de 2026: estudiar la dictée «C'est l'Halloween. Léa met un costume. Elle est une sorcière. Son ami porte un masque. Les enfants vont dehors.» y escribir los números pares del 1 al 50 (2, 4, 6, 8…).",
     "Esta semana no hay frases ni palabras del libro: las actividades de copiar se centran en las palabras de la dictée. Los verbos (met, porte, vont, est) se practican dentro de las frases de la dictée.",
     "La foto no muestra el día de la dictée; se puso «jeudi 29 octobre»."
+   ]
+  },
+  {
+   "id": "vetements-2026-11-09",
+   "date": "2026-11-09",
+   "title": "Les vêtements",
+   "subtitle": "Semaine du 9 au 13 novembre",
+   "due": "Pour lundi 9 novembre",
+   "dictationDay": "jeudi 12 novembre",
+   "words": [
+    {
+     "art": "une",
+     "noun": "montre",
+     "es": "un reloj de pulsera",
+     "page": 14,
+     "pic": "art:montre",
+     "dict": true
+    },
+    {
+     "art": "des",
+     "noun": "tongs",
+     "es": "unas chanclas",
+     "page": 14,
+     "pic": "art:tongs"
+    },
+    {
+     "art": "un",
+     "noun": "T-shirt",
+     "es": "una camiseta",
+     "page": 14,
+     "pic": "art:T-shirt"
+    },
+    {
+     "art": "un",
+     "noun": "chandail",
+     "es": "un suéter",
+     "page": 14,
+     "pic": "art:chandail",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "pull",
+     "es": "un pulóver (de punto)",
+     "page": 14,
+     "pic": "art:pull"
+    },
+    {
+     "art": "une",
+     "noun": "cravate",
+     "es": "una corbata",
+     "page": 14,
+     "pic": "art:cravate",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "short",
+     "es": "unos pantalones cortos",
+     "page": 14,
+     "pic": "art:short"
+    },
+    {
+     "art": "un",
+     "noun": "pantalon",
+     "es": "un pantalón",
+     "page": 14,
+     "pic": "art:pantalon",
+     "dict": true
+    },
+    {
+     "art": "des",
+     "noun": "chaussettes",
+     "es": "unos calcetines",
+     "page": 14,
+     "pic": "art:chaussettes"
+    },
+    {
+     "art": "des",
+     "noun": "chaussures",
+     "es": "unas zapatillas (calzado)",
+     "page": 14,
+     "pic": "art:chaussures",
+     "dict": true
+    },
+    {
+     "art": "des",
+     "noun": "souliers",
+     "es": "unos zapatos",
+     "page": 14,
+     "pic": "art:souliers"
+    },
+    {
+     "art": "une",
+     "noun": "robe",
+     "es": "un vestido",
+     "page": 14,
+     "pic": "art:robe"
+    },
+    {
+     "art": "une",
+     "noun": "jupe",
+     "es": "una falda",
+     "page": 14,
+     "pic": "art:jupe",
+     "dict": true
+    },
+    {
+     "art": "une",
+     "noun": "écharpe",
+     "es": "una bufanda",
+     "page": 14,
+     "pic": "art:écharpe",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "foulard",
+     "es": "un pañuelo (de cuello)",
+     "page": 14,
+     "pic": "art:foulard"
+    },
+    {
+     "art": "un",
+     "noun": "manteau",
+     "es": "un abrigo",
+     "page": 14,
+     "pic": "art:manteau",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "parapluie",
+     "es": "un paraguas",
+     "page": 14,
+     "pic": "art:parapluie"
+    },
+    {
+     "art": "des",
+     "noun": "lunettes",
+     "es": "unas gafas",
+     "page": 14,
+     "pic": "art:lunettes"
+    },
+    {
+     "art": "des",
+     "noun": "lunettes de soleil",
+     "es": "unas gafas de sol",
+     "page": 14,
+     "pic": "art:lunettes de soleil"
+    },
+    {
+     "art": "des",
+     "noun": "bottes",
+     "es": "unas botas",
+     "page": 14,
+     "pic": "art:bottes",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "blazer",
+     "es": "un blazer",
+     "page": 15,
+     "pic": "art:blazer"
+    },
+    {
+     "art": "une",
+     "noun": "blouse",
+     "es": "una blusa",
+     "page": 15,
+     "pic": "art:blouse"
+    },
+    {
+     "art": "un",
+     "noun": "cardigan",
+     "es": "una rebeca (cárdigan)",
+     "page": 15,
+     "pic": "art:cardigan"
+    },
+    {
+     "art": "une",
+     "noun": "couche",
+     "es": "un pañal",
+     "page": 15,
+     "pic": "art:couche"
+    },
+    {
+     "art": "des",
+     "noun": "talons",
+     "es": "unos tacones",
+     "page": 15,
+     "pic": "art:talons"
+    },
+    {
+     "art": "un",
+     "noun": "jersey",
+     "es": "una camiseta deportiva (jersey)",
+     "page": 15,
+     "pic": "art:jersey"
+    },
+    {
+     "art": "un",
+     "noun": "body",
+     "es": "un body (de bebé)",
+     "page": 15,
+     "pic": "art:body"
+    },
+    {
+     "art": "une",
+     "noun": "salopette",
+     "es": "un peto",
+     "page": 15,
+     "pic": "art:salopette",
+     "dict": true
+    },
+    {
+     "art": "un",
+     "noun": "poncho",
+     "es": "un poncho",
+     "page": 15,
+     "pic": "art:poncho"
+    },
+    {
+     "art": "des",
+     "noun": "pantoufles",
+     "es": "unas pantuflas",
+     "page": 15,
+     "pic": "art:pantoufles"
+    },
+    {
+     "art": "des",
+     "noun": "sandales",
+     "es": "unas sandalias",
+     "page": 15,
+     "pic": "art:sandales"
+    },
+    {
+     "art": "des",
+     "noun": "collants",
+     "es": "unas medias (leotardos)",
+     "page": 15,
+     "pic": "art:collants"
+    },
+    {
+     "art": "un",
+     "noun": "débardeur",
+     "es": "una camiseta de tirantes anchos",
+     "page": 15,
+     "pic": "art:débardeur"
+    },
+    {
+     "art": "une",
+     "noun": "camisole",
+     "es": "una camisola de tirantes finos",
+     "page": 15,
+     "pic": "art:camisole"
+    },
+    {
+     "art": "une",
+     "noun": "veste",
+     "es": "un chaleco (así sale en el libro)",
+     "page": 15,
+     "pic": "art:veste"
+    }
+   ],
+   "phrases": [
+    {
+     "pre": "Aujourd'hui, je porte ",
+     "post": ".",
+     "es": "Hoy llevo…",
+     "chips": [
+      "un pantalon",
+      "un chandail",
+      "une jupe",
+      "une robe",
+      "un T-shirt",
+      "une salopette"
+     ]
+    },
+    {
+     "pre": "Quand il fait froid, je mets ",
+     "post": ".",
+     "es": "Cuando hace frío, me pongo…",
+     "chips": [
+      "un manteau",
+      "une écharpe",
+      "des bottes",
+      "un pull",
+      "des collants",
+      "des chaussettes"
+     ]
+    },
+    {
+     "pre": "Pour aller à la plage, je mets ",
+     "post": ".",
+     "es": "Para ir a la playa, me pongo…",
+     "chips": [
+      "des tongs",
+      "un short",
+      "des sandales",
+      "des lunettes de soleil",
+      "un T-shirt"
+     ]
+    },
+    {
+     "pre": "Dans ma valise, il y a ",
+     "post": ".",
+     "es": "En mi maleta hay…",
+     "chips": [
+      "un short",
+      "des chaussettes",
+      "un pull",
+      "des lunettes",
+      "une montre",
+      "des pantoufles"
+     ]
+    },
+    {
+     "pre": "Il pleut : je prends ",
+     "post": ".",
+     "es": "Llueve: llevo…",
+     "chips": [
+      "un parapluie",
+      "des bottes",
+      "un manteau",
+      "une écharpe"
+     ]
+    }
+   ],
+   "numbers": {
+    "from": 1,
+    "to": 49,
+    "step": 2,
+    "game": "pierres",
+    "mix": false,
+    "title": "Les nombres impairs de 1 à 50",
+    "es": "Los números impares del 1 al 50: solo se escriben en cifras"
+   },
+   "notes": [
+    "Hoja de la semana del 9 al 13 de noviembre de 2026 (Madame Devina, 701): copiar todas las palabras del lexique «Les vêtements» (págs. 14 y 15) para el lunes 9, escribir 5 frases con palabras a elegir, dictée de 10 palabras (une montre, un chandail, une cravate, un pantalon, des chaussures, une écharpe, une jupe, un manteau, des bottes, une salopette) y escribir los números impares del 1 al 50 (1, 3, 5, 7…).",
+    "Los números impares solo se escriben en cifras, no en letras: se practican con el juego de saltar de piedra en piedra.",
+    "La foto no muestra el día de la dictée; se puso «jeudi 12 novembre»."
    ]
   }
  ]

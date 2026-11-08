@@ -577,6 +577,150 @@
     '<rect x="196" y="132" width="14" height="60" fill="#9a6a3c"/><circle cx="203" cy="112" r="32" fill="#f08a3c"/>' +
     kid(144, 204, .8, '#4f6df5', '#87552f') +
     '<path d="M96 168 H120 M112 160 L122 168 L112 176" fill="none" stroke-width="5"/>');
+  /* ---------- Dessins des mots: Les vêtements (pages 14 et 15) ---------- */
+  function tee(fill) { return '<path d="M78 58 L44 84 L62 116 L86 102 V200 H154 V102 L178 116 L196 84 L162 58 C152 76 88 76 78 58 Z" fill="' + fill + '"/>'; }
+  function longTop(fill) { return '<path d="M80 58 L42 90 L52 178 L78 174 L86 118 V200 H154 V118 L162 174 L188 178 L198 90 L160 58 C150 76 90 76 80 58 Z" fill="' + fill + '"/>'; }
+  function dot(x, y, r, fill) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + fill + '" stroke-width="3"/>'; }
+
+  ART['montre'] = wrap('#ffe9e0',
+    '<rect x="98" y="22" width="44" height="64" rx="10" fill="#c0392b"/><rect x="98" y="154" width="44" height="64" rx="10" fill="#c0392b"/>' +
+    '<circle cx="120" cy="120" r="54" fill="#fff"/><circle cx="120" cy="120" r="42" fill="none" stroke-width="3" opacity=".35"/>' +
+    '<path d="M120 76 V86 M164 120 H154 M120 164 V154 M76 120 H86" fill="none" stroke-width="5"/>' +
+    '<path d="M120 120 V92 M120 120 L142 132" fill="none" stroke-width="6"/>' + dot(120, 120, 5, INK) + hl('M84 96 C90 84 100 78 110 76'));
+  (function () {
+    var tong = '<path d="M66 40 C46 42 40 84 46 132 C50 176 70 208 92 206 C114 204 116 164 112 124 C108 78 90 38 66 40 Z" fill="#4fb0f5"/>' +
+      limb('M68 58 L82 128 M102 90 L82 128 M82 128 V150', 7, '#ffd23f');
+    ART['tongs'] = wrap('#dff1ff', '<g transform="translate(14 10) scale(.9)">' + tong + '</g><g transform="translate(100 10) scale(.9)">' + tong + '</g>');
+  })();
+  ART['T-shirt'] = wrap('#e3f0ff', shadow(60) + tee('#4f9df5') +
+    '<path d="M92 62 C100 82 140 82 148 62" fill="none" stroke="#2f6fc0" stroke-width="7"/>' + sparkle(120, 140, 1.7, '#fff'));
+  ART['pull'] = wrap('#e0f5ea', shadow(60) + longTop('#3fb58a') +
+    '<path d="M86 124 L98 136 L110 124 L122 136 L134 124 L146 136 L154 128 M86 152 L98 164 L110 152 L122 164 L134 152 L146 164 L154 156" fill="none" stroke="#fff" stroke-width="5"/>' +
+    '<path d="M86 196 H154" fill="none" stroke="#2c8a68" stroke-width="12"/><path d="M52 176 L78 172 M162 172 L188 176" fill="none" stroke="#2c8a68" stroke-width="10"/>' +
+    '<path d="M96 62 C102 80 138 80 144 62" fill="none" stroke="#2c8a68" stroke-width="9"/>');
+  ART['cravate'] = wrap('#ffe9e0', shadow(44) +
+    '<path d="M104 26 H136 L142 58 H98 Z" fill="#c0392b"/><path d="M98 58 H142 L158 190 L120 218 L82 190 Z" fill="#e8574f"/>' +
+    '<path d="M98 100 L142 88 M94 134 L146 122 M90 168 L150 156" fill="none" stroke="#fff" stroke-width="6" opacity=".7"/>');
+  ART['pantalon'] = wrap('#e3ebff', shadow(70) +
+    '<path d="M78 40 H162 L174 212 H128 L120 104 L112 212 H66 Z" fill="#3b5fc0"/><path d="M78 40 H162 V60 H78 Z" fill="#8a5a2b"/>' +
+    '<rect x="112" y="42" width="16" height="16" rx="3" fill="#ffd23f" stroke-width="3"/>' +
+    '<path d="M120 60 V104 M84 72 C96 76 102 86 102 98 M156 72 C144 76 138 86 138 98" fill="none" stroke="#fff" stroke-width="3.5" opacity=".6"/>');
+  ART['short'] = wrap('#fff0d6', shadow(70) +
+    '<path d="M76 54 H164 L180 168 H128 L120 112 L112 168 H60 Z" fill="#f2a63e"/><path d="M76 54 H164 V74 H76 Z" fill="#d9892a"/>' +
+    '<path d="M112 74 V96 M128 74 V96 M64 156 H112 M128 156 H176" fill="none" stroke="#fff" stroke-width="4" opacity=".75"/>');
+  (function () {
+    var sock = '<path d="M70 40 H116 V130 C150 140 168 160 164 190 C160 214 120 216 100 206 C80 196 70 170 70 140 Z" fill="#fff"/>';
+    ART['chaussettes'] = wrap('#fff0f2',
+      '<g transform="translate(-32 30) scale(.8)">' + sock + '<path d="M70 40 H116 V66 H70 Z" fill="#ff7a7a"/><path d="M128 186 C140 182 154 188 158 196" fill="none" stroke="#ff7a7a" stroke-width="7"/></g>' +
+      '<g transform="translate(74 30) scale(.8)">' + sock + '<path d="M70 40 H116 V66 H70 Z" fill="#4f9df5"/><path d="M128 186 C140 182 154 188 158 196" fill="none" stroke="#4f9df5" stroke-width="7"/></g>');
+  })();
+  ART['chaussures'] = wrap('#e3ebff', shadow(90) +
+    '<path d="M28 160 V122 C28 112 36 106 46 108 L94 120 C110 124 120 104 132 92 L156 116 C168 128 190 134 206 146 C216 154 216 176 206 182 H44 C34 182 28 172 28 160 Z" fill="#4f6df5"/>' +
+    '<path d="M24 184 H210 V202 C210 208 206 212 200 212 H34 C28 212 24 208 24 202 Z" fill="#fff"/>' +
+    '<path d="M108 116 L120 128 M122 104 L134 116 M136 94 L148 106 M28 150 H60" fill="none" stroke="#fff" stroke-width="6"/>' +
+    '<path d="M172 142 C178 154 178 170 172 182" fill="none" stroke-width="4"/>');
+  ART['souliers'] = wrap('#f6ead9', shadow(90) +
+    '<path d="M28 168 V132 C28 122 36 118 46 120 L84 128 C96 130 108 144 124 150 C146 158 172 152 198 164 C214 172 214 190 202 192 H42 C34 192 28 180 28 168 Z" fill="#8a5a2b"/>' +
+    '<path d="M26 192 H208 V204 H26 Z" fill="#3b2a1a"/><path d="M26 204 H62 V214 H26 Z" fill="#3b2a1a"/>' +
+    '<path d="M92 132 L104 142 M104 126 L116 138" fill="none" stroke="#f6d9a8" stroke-width="5"/>' + hl('M44 136 C58 142 70 152 76 164'));
+  ART['robe'] = wrap('#ffe9f2', shadow(70) +
+    '<path d="M98 40 H142 L148 84 L186 210 H54 L92 84 Z" fill="#ff8fb1"/>' +
+    '<path d="M98 40 L96 22 M142 40 L144 22" fill="none" stroke-width="7"/>' +
+    '<path d="M92 88 H148" fill="none" stroke="#fff" stroke-width="9"/>' +
+    '<path d="M120 90 L106 78 V100 Z M120 90 L134 78 V100 Z" fill="#fff" stroke-width="3"/>' +
+    '<path d="M104 92 L76 206 M136 92 L164 206" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>');
+  ART['jupe'] = wrap('#efe3ff', shadow(80) +
+    '<path d="M84 56 H156 L196 192 C170 206 70 206 44 192 Z" fill="#6a4aa8"/><path d="M84 56 H156 V76 H84 Z" fill="#8a6fc0"/>' +
+    '<path d="M104 76 L86 198 M120 76 V204 M136 76 L154 198" fill="none" stroke="#fff" stroke-width="3.5" opacity=".5"/>');
+  ART['écharpe'] = wrap('#ffe9e0', shadow(60) +
+    '<path d="M44 76 C44 54 196 54 196 76 C196 100 150 106 120 106 C90 106 44 100 44 76 Z" fill="#e8574f"/>' +
+    '<path d="M94 102 L82 208 H128 L134 106 Z" fill="#e8574f"/>' +
+    '<path d="M86 150 H130 M84 178 H129" fill="none" stroke="#fff" stroke-width="8"/>' +
+    '<path d="M88 208 V224 M98 208 V224 M108 208 V224 M118 208 V224" fill="none" stroke-width="4"/>' +
+    '<path d="M60 76 C80 84 100 88 120 88 C140 88 160 84 180 76" fill="none" stroke="#fff" stroke-width="7" opacity=".6"/>');
+  ART['foulard'] = wrap('#fff6d9',
+    '<path d="M26 60 H214 L120 206 Z" fill="#ffd23f"/>' +
+    '<circle cx="76" cy="88" r="7" fill="#e8574f" stroke="none"/><circle cx="120" cy="88" r="7" fill="#e8574f" stroke="none"/><circle cx="164" cy="88" r="7" fill="#e8574f" stroke="none"/>' +
+    '<circle cx="98" cy="122" r="7" fill="#e8574f" stroke="none"/><circle cx="142" cy="122" r="7" fill="#e8574f" stroke="none"/><circle cx="120" cy="156" r="7" fill="#e8574f" stroke="none"/>' +
+    '<path d="M26 60 L12 44 M214 60 L228 44" fill="none" stroke-width="6"/>');
+  ART['manteau'] = wrap('#ffe9e0', shadow(80) +
+    '<path d="M84 46 H156 L196 84 L204 212 H36 L44 84 Z" fill="#c0392b"/>' +
+    '<path d="M84 46 L120 112 L100 128 L72 80 Z M156 46 L120 112 L140 128 L168 80 Z" fill="#a82f24"/>' +
+    '<path d="M120 112 V212 M64 92 L58 212 M176 92 L182 212" fill="none" stroke-width="4"/>' +
+    dot(106, 150, 5, '#ffd23f') + dot(134, 150, 5, '#ffd23f') + dot(106, 184, 5, '#ffd23f') + dot(134, 184, 5, '#ffd23f'));
+  ART['lunettes'] = wrap('#e3f4ff',
+    '<rect x="22" y="84" width="82" height="64" rx="26" fill="#e3f4ff"/><rect x="136" y="84" width="82" height="64" rx="26" fill="#e3f4ff"/>' +
+    '<path d="M104 106 C112 96 128 96 136 106" fill="none" stroke-width="7"/><path d="M22 98 L12 90 M218 98 L228 90" fill="none" stroke-width="6"/>' +
+    hl('M38 108 C42 102 50 98 58 98') + hl('M152 108 C156 102 164 98 172 98'));
+  ART['lunettes de soleil'] = wrap('#fff3b0',
+    '<circle cx="204" cy="44" r="18" fill="#ffd23f"/><path d="M204 14 V20 M204 68 V74 M174 44 H180 M228 44 H234" fill="none" stroke-width="4"/>' +
+    '<path d="M20 90 H220 L214 128 C210 154 168 158 152 134 L146 112 H94 L88 134 C72 158 30 154 26 128 Z" fill="#2f2a54"/>' +
+    '<path d="M20 90 L10 82 M220 90 L230 82" fill="none" stroke-width="6"/>' +
+    hl('M40 108 C46 104 54 102 62 102') + hl('M162 108 C168 104 176 102 184 102'));
+  ART['bottes'] = wrap('#f6ead9', shadow(90) +
+    '<g transform="translate(10 31) scale(.74)"><path d="M66 36 H112 V128 C114 152 156 144 166 172 C168 194 156 204 142 204 H58 C48 204 46 194 50 184 C62 168 66 152 66 128 Z" fill="#8a5a2b"/><path d="M66 56 H112" fill="none" stroke="#3b2a1a" stroke-width="12"/><path d="M50 196 H154" fill="none" stroke="#3b2a1a" stroke-width="10"/></g>' +
+    '<g transform="translate(100 31) scale(.74)"><path d="M66 36 H112 V128 C114 152 156 144 166 172 C168 194 156 204 142 204 H58 C48 204 46 194 50 184 C62 168 66 152 66 128 Z" fill="#8a5a2b"/><path d="M66 56 H112" fill="none" stroke="#3b2a1a" stroke-width="12"/><path d="M50 196 H154" fill="none" stroke="#3b2a1a" stroke-width="10"/></g>');
+  ART['blazer'] = wrap('#e3ebff', shadow(80) +
+    '<path d="M82 46 H158 L198 84 L192 198 H134 L120 172 L106 198 H48 L42 84 Z" fill="#2f3f6a"/>' +
+    '<path d="M104 46 L120 108 L136 46 Z" fill="#fff"/>' +
+    '<path d="M82 46 L120 128 L98 142 L70 82 Z M158 46 L120 128 L142 142 L170 82 Z" fill="#4a5d94"/>' +
+    '<path d="M62 150 H92 M148 150 H178" fill="none" stroke="#4a5d94" stroke-width="6"/>' + dot(120, 156, 5, '#ffd23f') + dot(120, 182, 5, '#ffd23f'));
+  ART['blouse'] = wrap('#ffe9f2', shadow(60) + tee('#ff9ec2') +
+    '<path d="M90 60 C82 86 104 96 120 88 C136 96 158 86 150 60 C140 72 100 72 90 60 Z" fill="#fff"/>' +
+    dot(120, 118, 4, '#fff') + dot(120, 142, 4, '#fff') + dot(120, 166, 4, '#fff'));
+  ART['cardigan'] = wrap('#fff0d6', shadow(60) + longTop('#f08a3c') +
+    '<path d="M96 62 L120 112 L144 62 Z" fill="#fff"/><path d="M120 112 V200" fill="none" stroke-width="4"/>' +
+    '<path d="M92 150 H110 V178 H92 Z M130 150 H148 V178 H130 Z" fill="none" stroke-width="4"/>' +
+    dot(120, 132, 4, '#fff') + dot(120, 156, 4, '#fff') + dot(120, 182, 4, '#fff') +
+    '<path d="M52 176 L78 172 M162 172 L188 176" fill="none" stroke="#c96a1e" stroke-width="10"/>');
+  ART['couche'] = wrap('#e3f4ff', shadow(70) +
+    '<path d="M28 76 H212 V112 C212 156 170 192 120 192 C70 192 28 156 28 112 Z" fill="#fff"/>' +
+    '<rect x="20" y="72" width="34" height="24" rx="7" fill="#4fb0f5"/><rect x="186" y="72" width="34" height="24" rx="7" fill="#4fb0f5"/>' +
+    '<path d="M28 100 H212 M62 136 C80 166 100 174 120 174 C140 174 160 166 178 136" fill="none" stroke-width="4" opacity=".5"/>' + sparkle(120, 128, 1.2, '#ffd23f'));
+  ART['talons'] = wrap('#ffe9f2', shadow(70) +
+    '<path d="M38 96 H78 C84 124 104 142 134 152 C164 162 200 166 214 186 C216 196 208 200 198 198 C160 194 110 184 80 164 C60 154 40 136 38 96 Z" fill="#c0392b"/>' +
+    '<path d="M58 150 L76 160 L64 214 H52 Z" fill="#7a2f2f"/>' +
+    '<path d="M78 98 C86 114 100 126 120 134" fill="none" stroke="#fff" stroke-width="5" opacity=".7"/>');
+  ART['jersey'] = wrap('#e3ebff', shadow(60) + tee('#2f3f6a') +
+    '<path d="M92 62 C100 84 140 84 148 62" fill="none" stroke="#fff" stroke-width="8"/><path d="M48 90 L66 112 M192 90 L174 112" fill="none" stroke="#fff" stroke-width="7"/>' +
+    '<text x="120" y="172" text-anchor="middle" font-family="Grandstander, Andika, sans-serif" font-size="84" font-weight="800" fill="#fff" stroke="none">4</text>');
+  ART['body'] = wrap('#fff6d9', shadow(50) +
+    '<path d="M78 40 L48 64 L66 94 L88 82 V150 C88 178 100 190 120 190 C140 190 152 178 152 150 V82 L174 94 L192 64 L162 40 C154 56 86 56 78 40 Z" fill="#ffe9a8"/>' +
+    '<path d="M100 188 H140 V210 H100 Z" fill="#ffe9a8"/>' + dot(110, 200, 4, '#fff') + dot(130, 200, 4, '#fff') +
+    '<path d="M92 60 C100 76 140 76 148 60" fill="none" stroke-width="5"/>' + sparkle(120, 118, 1.3, '#ff8fb1'));
+  ART['salopette'] = wrap('#e3ebff', shadow(70) +
+    '<path d="M84 28 H100 V62 H140 V28 H156 V62 L166 90 V214 H128 L120 150 L112 214 H74 V90 L84 62 Z" fill="#4f6df5"/>' +
+    '<rect x="102" y="76" width="36" height="30" rx="5" fill="#3a56e8" stroke-width="3.5"/>' + dot(92, 76, 5, '#ffd23f') + dot(148, 76, 5, '#ffd23f') +
+    '<path d="M120 150 V112 M74 100 H166" fill="none" stroke-width="3.5" opacity=".6"/>');
+  ART['poncho'] = wrap('#fff3d6', shadow(80) +
+    '<path d="M120 34 L216 196 H24 Z" fill="#e8b04a"/><path d="M98 44 L120 86 L142 44" fill="none" stroke-width="6"/>' +
+    '<path d="M48 150 L68 164 L88 150 L108 164 L128 150 L148 164 L168 150 L188 164" fill="none" stroke="#e8574f" stroke-width="8"/>' +
+    '<path d="M32 196 V212 M52 196 V212 M72 196 V212 M92 196 V212 M112 196 V212 M132 196 V212 M152 196 V212 M172 196 V212 M192 196 V212" fill="none" stroke-width="4"/>');
+  (function () {
+    var sl = '<path d="M30 120 C30 90 90 84 118 100 C140 112 160 130 150 160 C146 182 40 190 30 160 Z" fill="#ffc2d1"/><ellipse cx="96" cy="112" rx="34" ry="14" fill="#ffe9f2"/>' +
+      '<path d="M44 150 C52 138 62 136 70 142 M72 154 C80 144 90 144 98 150" fill="none" stroke="#fff" stroke-width="5" opacity=".8"/>';
+    ART['pantoufles'] = wrap('#fff0f6', '<g transform="translate(6 20) scale(.8)">' + sl + '</g><g transform="translate(80 64) scale(.8)">' + sl + '</g>');
+  })();
+  (function () {
+    var sa = '<path d="M66 40 C46 42 40 84 46 132 C50 176 70 208 92 206 C114 204 116 164 112 124 C108 78 90 38 66 40 Z" fill="#8a5a2b"/>' +
+      limb('M46 96 L112 84 M48 150 L112 138', 11, '#d4a55a') + dot(112, 140, 6, '#ffd23f');
+    ART['sandales'] = wrap('#fff0d6', '<g transform="translate(14 10) scale(.9)">' + sa + '</g><g transform="translate(100 10) scale(.9)">' + sa + '</g>');
+  })();
+  ART['collants'] = wrap('#efe3ff', shadow(60) +
+    '<path d="M70 30 H170 V76 C170 110 160 150 156 214 H132 C134 150 124 112 120 102 C116 112 106 150 108 214 H84 C80 150 70 110 70 76 Z" fill="#7a5fb0"/>' +
+    '<path d="M70 30 H170 V50 H70 Z" fill="#5b4a8a"/><path d="M120 50 V102" fill="none" stroke-width="4"/>' + hl('M82 80 C84 110 90 140 94 170'));
+  ART['débardeur'] = wrap('#e3f4ff', shadow(60) +
+    '<path d="M82 34 H112 C112 66 128 66 128 34 H158 C158 84 178 100 178 134 V206 H62 V134 C62 100 82 84 82 34 Z" fill="#4fb0f5"/>' +
+    '<path d="M86 130 V198 M102 130 V198 M118 130 V198 M134 130 V198 M150 130 V198 M166 130 V198" fill="none" stroke="#fff" stroke-width="3" opacity=".55"/>');
+  ART['camisole'] = wrap('#ffe9f2', shadow(60) +
+    '<path d="M72 92 C90 112 150 112 168 92 L182 208 H58 Z" fill="#ffb3d1"/>' +
+    limb('M96 34 L88 98', 5, '#ff7aa8') + limb('M144 34 L152 98', 5, '#ff7aa8') +
+    '<path d="M120 114 L106 104 V122 Z M120 114 L134 104 V122 Z" fill="#ff5c8a" stroke-width="3"/>' +
+    '<path d="M74 96 C80 104 88 108 96 108 M166 96 C160 104 152 108 144 108" fill="none" stroke="#fff" stroke-width="4" opacity=".8"/>');
+  ART['veste'] = wrap('#e6e2f4', shadow(70) +
+    '<path d="M72 44 H104 L120 108 L136 44 H168 L186 112 V206 H54 V112 Z" fill="#2f2a54"/>' +
+    dot(120, 132, 5, '#fff') + dot(120, 158, 5, '#fff') + dot(120, 184, 5, '#fff') +
+    '<path d="M70 150 H96 M144 150 H170" fill="none" stroke="#5b4a8a" stroke-width="5"/>');
   var DMAP = {};
   DICTEE.forEach(function (d) { DMAP[d.noun] = d.svg; });
 
