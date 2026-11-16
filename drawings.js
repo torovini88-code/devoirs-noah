@@ -721,6 +721,136 @@
     '<path d="M72 44 H104 L120 108 L136 44 H168 L186 112 V206 H54 V112 Z" fill="#2f2a54"/>' +
     dot(120, 132, 5, '#fff') + dot(120, 158, 5, '#fff') + dot(120, 184, 5, '#fff') +
     '<path d="M70 150 H96 M144 150 H170" fill="none" stroke="#5b4a8a" stroke-width="5"/>');
+  /* ---------- Dessins des mots: Les vêtements, suite (pages 16 et 17, 16 au 20 novembre) ---------- */
+  ART['chapeau'] = wrap('#fff3d6', shadow(90) +
+    '<path d="M64 130 C60 80 76 50 120 50 C164 50 180 80 176 130 Z" fill="#e8b45a"/>' +
+    '<path d="M64 130 H176 V106 H66 Z" fill="#c0392b"/>' +
+    '<ellipse cx="120" cy="136" rx="102" ry="26" fill="#f0c97a"/>' +
+    '<path d="M24 136 C48 156 192 156 216 136" fill="none" stroke-width="3.5" opacity=".5"/>' +
+    hl('M82 92 C86 74 98 64 112 60'));
+  ART['casquette'] = wrap('#e3f0ff', shadow(84) +
+    '<path d="M54 140 C48 80 84 44 124 46 C164 48 188 84 186 140 Z" fill="#4f6df5"/>' +
+    '<path d="M54 140 C100 130 160 132 186 140 C196 142 224 148 228 162 C190 168 110 168 54 152 Z" fill="#2f46b8"/>' +
+    '<path d="M124 46 V138 M96 52 C86 80 84 110 90 136 M152 52 C162 80 164 110 158 136" fill="none" stroke="#fff" stroke-width="3.5" opacity=".55"/>' +
+    '<circle cx="124" cy="46" r="7" fill="#ffd23f" stroke-width="4"/>');
+  ART['tuque'] = wrap('#e6f2ff', shadow(72) +
+    '<path d="M54 160 C44 92 70 52 120 52 C170 52 196 92 186 160 Z" fill="#4f9df5"/>' +
+    '<path d="M86 60 C74 90 72 126 76 158 M120 54 V158 M154 60 C166 90 168 126 164 158" fill="none" stroke="#fff" stroke-width="4" opacity=".5"/>' +
+    '<rect x="48" y="150" width="144" height="40" rx="14" fill="#2f6fc0"/>' +
+    '<path d="M66 154 V186 M84 154 V186 M102 154 V186 M120 154 V186 M138 154 V186 M156 154 V186 M174 154 V186" fill="none" stroke="#fff" stroke-width="3.5" opacity=".5"/>' +
+    '<circle cx="120" cy="40" r="22" fill="#fff"/>' + '<path d="M104 36 L112 42 M120 28 V40 M134 36 L126 42" fill="none" stroke-width="3" opacity=".35"/>');
+  ART['bonnet'] = wrap('#ffe9e0', shadow(72) +
+    '<path d="M50 168 C40 110 66 74 120 74 C174 74 200 110 190 168 Z" fill="#e8574f"/>' +
+    '<path d="M80 82 C70 108 70 138 74 166 M160 82 C170 108 170 138 166 166" fill="none" stroke="#fff" stroke-width="4" opacity=".45"/>' +
+    '<rect x="44" y="158" width="152" height="38" rx="14" fill="#fff"/>' +
+    '<path d="M62 162 V192 M82 162 V192 M102 162 V192 M122 162 V192 M142 162 V192 M162 162 V192 M180 162 V192" fill="none" stroke="#e8574f" stroke-width="3.5" opacity=".6"/>' +
+    '<circle cx="120" cy="60" r="24" fill="#ffd23f"/>' + '<path d="M104 54 L112 62 M126 48 L132 60 M110 70 L124 72" fill="none" stroke-width="3" opacity=".4"/>');
+  (function () {
+    function pair(c1, c2, trim) {
+      var m = '<path d="M-34 74 C-34 24 -10 8 12 18 C26 -14 52 -4 48 44 L48 74 Z" fill="' + c1 + '"/>' +
+        '<path d="M-36 4 C-52 6 -58 28 -46 44 C-40 52 -30 50 -28 40" fill="' + c1 + '"/>' +
+        '<rect x="-36" y="70" width="86" height="28" rx="9" fill="' + c2 + '"/>' +
+        '<path d="M-24 74 V94 M-8 74 V94 M8 74 V94 M24 74 V94 M40 74 V94" fill="none" stroke="#fff" stroke-width="3" opacity=".6"/>';
+      return m;
+    }
+    ART['mitaines'] = wrap('#ffe9f2',
+      '<g transform="translate(78 92) rotate(-8)">' + pair('#ff8fb1', '#ffffff') + '</g>' +
+      '<g transform="translate(168 108) scale(-1 1) rotate(-8)">' + pair('#ff8fb1', '#ffffff') + '</g>' + sparkle(206, 46, .7) + sparkle(34, 190, .6));
+    ART['moufles'] = wrap('#e0f3ff',
+      '<g transform="translate(78 92) rotate(-8)">' + pair('#4f9df5', '#ffd23f') + '</g>' +
+      '<g transform="translate(168 108) scale(-1 1) rotate(-8)">' + pair('#4f9df5', '#ffd23f') + '</g>' +
+      '<path d="M120 190 V218 M108 196 L132 212 M132 196 L108 212" fill="none" stroke="#fff" stroke-width="4"/>');
+  })();
+  (function () {
+    function glove(col) {
+      return '<path d="M-30 78 V16 C-30 6 -14 6 -14 16 V-18 C-14 -28 2 -28 2 -18 V-26 C2 -36 18 -36 18 -26 V-14 C18 -24 34 -22 34 -12 V50 C34 74 22 82 12 90 H-18 C-26 90 -30 86 -30 78 Z" fill="' + col + '"/>' +
+        '<path d="M-30 42 C-52 36 -58 14 -46 4 C-38 -2 -28 6 -30 16" fill="' + col + '"/>' +
+        '<rect x="-24" y="86" width="52" height="26" rx="8" fill="#ffd23f"/>' +
+        '<path d="M-14 8 V36 M2 -4 V36 M18 2 V36" fill="none" stroke-width="3" opacity=".4"/>';
+    }
+    ART['gants'] = wrap('#fff0d6',
+      '<g transform="translate(74 100) rotate(-6) scale(.86)">' + glove('#e8574f') + '</g>' +
+      '<g transform="translate(170 110) scale(-.86 .86) rotate(-6)">' + glove('#e8574f') + '</g>' + shadow(86));
+  })();
+  ART['bague'] = wrap('#efe3ff', shadow(60) +
+    '<circle cx="120" cy="150" r="52" fill="none" stroke="#ffd23f" stroke-width="22"/>' +
+    '<circle cx="120" cy="150" r="52" fill="none" stroke="' + INK + '" stroke-width="3" opacity=".5"/>' +
+    '<path d="M96 62 L144 62 L158 82 L120 112 L82 82 Z" fill="#7fd6f5"/>' +
+    '<path d="M82 82 H158 M96 62 L108 82 L120 112 M144 62 L132 82 L120 112 M108 82 L120 62 L132 82" fill="none" stroke-width="3.5"/>' +
+    sparkle(180, 52, 1, '#fff') + sparkle(60, 60, .7, '#fff'));
+  ART['collier'] = (function () {
+    var s = '', i, a, x, y, cols = ['#ff8fb1', '#ffd23f', '#4f9df5'];
+    for (i = 0; i <= 12; i++) { a = Math.PI * (0.08 + 0.84 * i / 12); x = 120 + 84 * Math.cos(a); y = 44 + 130 * Math.sin(a); s += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (i === 6 ? 17 : 12) + '" fill="' + (i === 6 ? '#e8574f' : cols[i % 3]) + '" stroke-width="4"/>'; }
+    return wrap('#ffe9f2', '<path d="M36 52 C70 200 170 200 204 52" fill="none" stroke-width="3" opacity=".4"/>' + s + sparkle(196, 168, .8, '#fff') + sparkle(48, 170, .6, '#fff'));
+  })();
+  ART['chemise'] = wrap('#e3f0ff', shadow(66) + longTop('#ffffff') +
+    '<path d="M94 58 L120 92 L146 58 L134 52 L120 66 L106 52 Z" fill="#dce8ff"/>' +
+    '<path d="M120 92 V200" fill="none" stroke-width="4"/>' +
+    '<circle cx="127" cy="116" r="3.6" fill="' + INK + '" stroke="none"/><circle cx="127" cy="142" r="3.6" fill="' + INK + '" stroke="none"/><circle cx="127" cy="168" r="3.6" fill="' + INK + '" stroke="none"/>' +
+    '<path d="M52 170 L78 166 M162 166 L188 170" fill="none" stroke="#9ab4e8" stroke-width="5"/>' +
+    '<path d="M96 100 H108 V118 H96 Z" fill="none" stroke-width="3" opacity=".5"/>');
+  ART['patins'] = wrap('#e0f3ff', shadow(90) +
+    '<path d="M64 36 C64 26 82 26 82 36 V96 C100 110 138 112 176 124 C196 132 204 150 196 164 H66 C56 164 52 154 52 146 Z" fill="#fff"/>' +
+    '<path d="M64 60 H82 M64 84 H82" fill="none" stroke-width="3.5"/>' +
+    '<path d="M56 164 H200 V176 H56 Z" fill="#7a8cb8"/>' +
+    '<path d="M44 190 H78 L92 176 H184 C204 176 214 184 218 194 H44 Z" fill="#cfd8ee"/>' +
+    '<path d="M94 118 L104 130 M112 124 L122 136 M130 130 L140 142" fill="none" stroke-width="4"/>' +
+    '<path d="M44 194 H218" fill="none" stroke-width="5"/>' + hl('M66 104 C72 124 70 140 66 152'));
+  ART['cache-oreilles'] = wrap('#ffe9f2', shadow(74) +
+    '<path d="M50 150 C34 40 206 40 190 150" fill="none" stroke="' + INK + '" stroke-width="20"/>' +
+    '<path d="M50 150 C34 40 206 40 190 150" fill="none" stroke="#7f8fa8" stroke-width="10"/>' +
+    '<circle cx="50" cy="156" r="40" fill="#ff8fb1"/><circle cx="190" cy="156" r="40" fill="#ff8fb1"/>' +
+    '<path d="M30 140 C38 128 48 126 56 132 M26 160 C34 150 46 148 54 154 M34 176 C42 168 52 168 58 172 M170 132 C178 126 188 128 196 140 M174 154 C182 148 194 150 202 160 M180 172 C188 168 198 168 204 176" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/>');
+  ART['peignoir'] = wrap('#efe3ff', shadow(66) +
+    '<path d="M86 44 L52 62 L40 190 L66 196 L76 112 L84 212 H156 L164 112 L174 196 L200 190 L188 62 L154 44 Z" fill="#9b7fd4"/>' +
+    '<path d="M86 44 L120 130 L154 44 L142 40 L120 76 L98 40 Z" fill="#fff"/>' +
+    '<path d="M82 144 C110 152 132 152 160 144 L162 164 C132 172 110 172 80 164 Z" fill="#6a4aa8"/>' +
+    '<path d="M120 164 C112 184 106 196 100 206 M120 164 C128 184 134 196 140 206" fill="none" stroke="#6a4aa8" stroke-width="7"/>' +
+    '<path d="M96 188 H144" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>');
+  ART['pyjama'] = wrap('#e6f0ff', shadow(70) +
+    '<path d="M78 24 L50 40 L56 96 L74 92 L78 62 V100 H162 V62 L166 92 L184 96 L190 40 L162 24 C152 40 88 40 78 24 Z" fill="#7fb2f5"/>' +
+    '<path d="M78 100 H162 L168 150 H72 Z" fill="none"/>' +
+    '<path d="M78 100 V108 H162 V100" fill="#4f6df5"/>' +
+    '<path d="M80 108 H160 L174 214 H128 L120 156 L112 214 H66 Z" fill="#7fb2f5"/>' +
+    '<path d="M88 46 H152 M84 66 H156 M82 86 H158 M90 128 L82 128 M156 128 H150 M88 150 H152 M84 172 H156" fill="none" stroke="#fff" stroke-width="3.5" opacity=".7"/>' +
+    '<circle cx="120" cy="36" r="3.4" fill="#fff" stroke-width="2.5"/><circle cx="120" cy="56" r="3.4" fill="#fff" stroke-width="2.5"/><circle cx="120" cy="76" r="3.4" fill="#fff" stroke-width="2.5"/>');
+  ART['maillot de bain'] = wrap('#dff1ff', shadow(60) +
+    '<path d="M86 34 H104 C104 66 108 80 120 80 C132 80 136 66 136 34 H154 C156 66 156 86 162 102 C168 118 176 132 174 158 C172 180 150 186 138 174 C132 168 126 164 120 164 C114 164 108 168 102 174 C90 186 68 180 66 158 C64 132 72 118 78 102 C84 86 84 66 86 34 Z" fill="#ff7a8a"/>' +
+    '<path d="M80 108 C104 120 136 120 160 108 M74 134 C102 146 138 146 166 134" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/>' +
+    '<path d="M120 96 L124 106 L134 107 L126 113 L129 123 L120 117 L111 123 L114 113 L106 107 L116 106 Z" fill="#ffd23f" stroke-width="3"/>');
+  ART['short de bain'] = wrap('#dff1ff', shadow(72) +
+    '<path d="M72 50 H168 L184 176 H130 L120 118 L110 176 H56 Z" fill="#2fb5c8"/><path d="M72 50 H168 V72 H72 Z" fill="#1d8fa0"/>' +
+    '<path d="M108 72 C104 92 98 100 94 112 M132 72 C136 92 142 100 146 112" fill="none" stroke="#fff" stroke-width="5"/>' +
+    '<path d="M62 120 C74 112 84 128 96 120 C108 112 110 126 110 126 M130 126 C130 126 134 112 146 120 C158 128 168 112 180 120" fill="none" stroke="#fff" stroke-width="4" opacity=".8"/>' +
+    '<path d="M60 150 C72 142 82 158 94 150 M146 150 C158 142 168 158 180 150" fill="none" stroke="#fff" stroke-width="4" opacity=".8"/>');
+  ART['jean'] = wrap('#e3ebff', shadow(70) +
+    '<path d="M78 34 H162 L176 214 H128 L120 100 L112 214 H64 Z" fill="#2c4a96"/>' +
+    '<path d="M78 34 H162 V56 H78 Z" fill="#3a5cb8"/>' +
+    '<circle cx="120" cy="66" r="7" fill="#ffd23f" stroke-width="3"/>' +
+    '<path d="M120 76 V100 M84 66 C98 70 106 84 104 100 M156 66 C142 70 134 84 136 100" fill="none" stroke="#f2a63e" stroke-width="3.5" stroke-dasharray="7 5"/>' +
+    '<path d="M70 190 H112 M128 190 H170" fill="none" stroke="#f2a63e" stroke-width="3.5" stroke-dasharray="7 5"/>' +
+    '<path d="M84 44 V52 M96 44 V52 M108 44 V52 M132 44 V52 M144 44 V52 M156 44 V52" fill="none" stroke="#1d3270" stroke-width="3"/>');
+  ART['nœud papillon'] = wrap('#ffe9e0', shadow(80) +
+    '<path d="M118 120 L42 70 C30 64 24 72 26 84 V156 C24 168 30 176 42 170 Z" fill="#e8574f"/>' +
+    '<path d="M122 120 L198 70 C210 64 216 72 214 84 V156 C216 168 210 176 198 170 Z" fill="#e8574f"/>' +
+    '<path d="M104 112 L50 86 M104 128 L50 154 M136 112 L190 86 M136 128 L190 154" fill="none" stroke="#fff" stroke-width="3.5" opacity=".6"/>' +
+    '<rect x="102" y="96" width="36" height="48" rx="12" fill="#c0392b"/>' +
+    dot(120, 120, 6, '#fff'));
+  ART['ceinture'] = wrap('#fff0d6', shadow(90) +
+    '<path d="M14 100 H226 V148 H14 Z" fill="#8a5a2b"/>' +
+    '<path d="M14 108 H226 M14 140 H226" fill="none" stroke="#f6d9a8" stroke-width="3" stroke-dasharray="9 6" opacity=".8"/>' +
+    '<path d="M174 100 H226 V148 H174 Z" fill="#6f4520"/>' +
+    '<circle cx="190" cy="124" r="4" fill="#fff" stroke-width="2.5"/><circle cx="206" cy="124" r="4" fill="#fff" stroke-width="2.5"/>' +
+    '<rect x="78" y="80" width="68" height="88" rx="12" fill="#ffd23f"/><rect x="94" y="96" width="36" height="56" rx="6" fill="#fff3b0"/>' +
+    '<rect x="112" y="108" width="40" height="8" rx="3" fill="' + INK + '" stroke="none"/>');
+  ART['Je porte'] = wrap('#fff3d6', shadow(70) +
+    kid(120, 210, 1.55, '#4f9df5', '#3b2a1a') +
+    '<g transform="translate(120 210) scale(1.55)">' +
+    '<path d="M-23 -108 C-23 -130 23 -130 23 -108 Z" fill="#e8b45a"/><rect x="-23" y="-114" width="46" height="7" fill="#c0392b" stroke-width="3"/>' +
+    '<ellipse cx="0" cy="-106" rx="34" ry="8" fill="#f0c97a" stroke-width="4"/>' +
+    '<path d="M-14 -72 L0 -64 L14 -72" fill="none" stroke="#e8574f" stroke-width="8"/>' +
+    '</g>' + sparkle(196, 54, .8) + sparkle(46, 70, .6));
+
   var DMAP = {};
   DICTEE.forEach(function (d) { DMAP[d.noun] = d.svg; });
 
@@ -820,7 +950,10 @@
   var TEEN = ['dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize', 'dix-sept', 'dix-huit', 'dix-neuf'];
   var TENS = { 2: 'vingt', 3: 'trente', 4: 'quarante', 5: 'cinquante', 6: 'soixante' };
   function numWord(n) {
-    if (n === 100) return 'cent';
+    if (n >= 100) {
+      var h = Math.floor(n / 100), r = n % 100, hw = h === 1 ? 'cent' : U[h] + (r ? '-cent' : '-cents');
+      return r ? hw + '-' + numWord(r) : hw;
+    }
     if (n === 0) return 'zéro';
     if (n < 10) return U[n];
     if (n < 20) return TEEN[n - 10];
@@ -832,6 +965,27 @@
     return 'quatre-vingt-' + TEEN[u];
   }
   function numSVG(n) {
+    if (n === 0) {
+      return '<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="4" width="232" height="232" rx="40" fill="#e3f7ee"/>' +
+        '<rect x="62" y="62" width="116" height="116" rx="26" fill="none" stroke="' + INK + '" stroke-width="5" stroke-dasharray="12 10" opacity=".45"/>' +
+        '<path d="M96 120 H144" stroke="' + INK + '" stroke-width="6" stroke-linecap="round" opacity=".5"/></svg>';
+    }
+    if (n >= 100) {
+      var hh = Math.floor(n / 100), tt = Math.floor(n / 10) % 10, uu = n % 10, bs = (!tt && !uu) ? (hh > 1 ? 84 : 110) : (hh > 1 ? 50 : 56), by0 = (!tt && !uu) ? (240 - bs) / 2 : 30, bg = 10, g = '', q, c, rr2, x1, rowW = hh * bs + (hh - 1) * bg, bx0 = (240 - rowW) / 2;
+      for (q = 0; q < hh; q++) {
+        x1 = bx0 + q * (bs + bg);
+        g += '<rect x="' + x1 + '" y="' + by0 + '" width="' + bs + '" height="' + bs + '" rx="7" fill="#3fb58a" stroke="' + INK + '" stroke-width="3.5"/>';
+        for (c = 1; c < 5; c++) g += '<path d="M' + (x1 + c * bs / 5) + ' ' + by0 + ' V' + (by0 + bs) + ' M' + x1 + ' ' + (by0 + c * bs / 5) + ' H' + (x1 + bs) + '" stroke="#fff" stroke-width="2" opacity=".5"/>';
+      }
+      var rs = 20, rwid = 14, trow = tt ? tt * rs - (rs - rwid) : 0, ux0 = (240 - trow) / 2;
+      for (q = 0; q < tt; q++) {
+        x1 = ux0 + q * rs;
+        g += '<rect x="' + x1 + '" y="108" width="' + rwid + '" height="86" rx="4" fill="#4f6df5" stroke="' + INK + '" stroke-width="3"/>';
+        for (c = 1; c < 10; c++) g += '<path d="M' + x1 + ' ' + (108 + c * 8.6) + ' H' + (x1 + rwid) + '" stroke="#fff" stroke-width="1.6" opacity=".55"/>';
+      }
+      if (uu) { var uw = uu * 18 - 4, uxs = (240 - uw) / 2; for (q = 0; q < uu; q++) g += '<rect x="' + (uxs + q * 18) + '" y="204" width="14" height="14" rx="3" fill="#ffc940" stroke="' + INK + '" stroke-width="2.5"/>'; }
+      return '<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="4" y="4" width="232" height="232" rx="40" fill="#e3f7ee"/>' + g + '</svg>';
+    }
     var t = Math.floor(n / 10), u = n % 10, step = t > 7 ? 15 : t > 6 ? 19 : 25, rw = t > 7 ? 11 : t > 6 ? 15 : 20, cs = 20, cols = u >= 3 ? 3 : u;
     if (n === 80) { t = 8; u = 0; cols = 0; }
     if (!t) {

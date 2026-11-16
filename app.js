@@ -90,7 +90,7 @@
   function mInfo(l, k) {
     if (k === 'mots') { var um = (l.ui && l.ui.mots) || {}; return { ico: 'Aa', name: um.name || 'Copier les mots', sub: um.sub || ('Lexique' + (pagesText(l) ? ', ' + pagesText(l) : '')), es: um.es || 'Copiar las palabras', total: l.words.length }; }
     if (k === 'phrases') return { ico: 'Je.', name: '5 phrases', sub: 'Avec une majuscule et un point', es: 'Cinco frases', total: (l.phrases || []).length };
-    if (k === 'nombres') { var n = l.numbers; if (n.game === 'pierres') return { ico: '1·3', name: n.title || 'Les nombres impairs', sub: 'Saute de pierre en pierre', es: n.es || '', total: numList(l).length }; return { ico: String(n.from), name: n.title || ('Les nombres de ' + n.from + ' à ' + n.to), sub: 'Math' + (n.page ? ', page ' + n.page : ''), es: n.es || ('Los números del ' + n.from + ' al ' + n.to), total: numList(l).length }; }
+    if (k === 'nombres') { var n = l.numbers; if (n.game === 'pierres') return { ico: '1·3', name: n.title || 'Les nombres impairs', sub: 'Saute de pierre en pierre', es: n.es || '', total: numList(l).length }; return { ico: n.ico || String(n.from), name: n.title || ('Les nombres de ' + n.from + ' à ' + n.to), sub: n.sub || ('Math' + (n.page ? ', page ' + n.page : '')), es: n.es || ('Los números del ' + n.from + ' al ' + n.to), total: numList(l).length }; }
     if (k === 'dictee') { if (l.dictation && l.dictation.length) return { ico: 'ABC', name: 'La dictée', sub: l.dictation.length + ' phrases à étudier', es: 'El dictado: cinco frases', total: l.dictation.length }; return { ico: 'ABC', name: 'La dictée', sub: dictWords(l).length + ' mots à étudier', es: 'El dictado', total: dictWords(l).length }; }
     if (k === 'jours') return { ico: 'L–D', name: 'Les jours de la semaine', sub: 'Du lundi au dimanche', es: 'Los días de la semana', total: 7 };
   }
@@ -116,15 +116,16 @@
     if (k === 'nombres') {
       var items = [];
       numList(l).forEach(function (n) {
-        var t = Math.floor(n / 10), u = n % 10, word = PICS.numWord(n), sub;
-        if (t === 0) sub = u + ' unité' + (u > 1 ? 's' : ''); else if (n === 100) sub = '10 dizaines'; else if (n === 80) sub = '4 × 20'; else if (t === 8) sub = '4 × 20 + ' + u; else if (t === 9) sub = '4 × 20 + ' + (10 + u); else if (t >= 7) sub = '60 + ' + (10 + u); else sub = t + ' dizaine' + (t > 1 ? 's' : '') + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : '');
-        items.push({ svg: PICS.numSVG(n), alt: t + ' bâtons bleus et ' + u + ' cubes jaunes',
-          wordHTML: '<span class="digits">' + (t ? '<span class="t">' + t + '</span>' : '') + '<span class="u">' + u + '</span></span><span class="nw">' + word + '</span>', sub: sub, speak: word.replace(/-/g, ' ') });
+        var h = Math.floor(n / 100), t = Math.floor(n / 10), u = n % 10, word = PICS.numWord(n), sub, dg;
+        if (n === 0) sub = 'zéro : rien du tout'; else if (n >= 100) { var t2 = t % 10; sub = h + ' centaine' + (h > 1 ? 's' : '') + (t2 ? ' et ' + t2 + ' dizaine' + (t2 > 1 ? 's' : '') : '') + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : ''); } else if (t === 0) sub = u + ' unité' + (u > 1 ? 's' : ''); else if (n === 80) sub = '4 × 20'; else if (t === 8) sub = '4 × 20 + ' + u; else if (t === 9) sub = '4 × 20 + ' + (10 + u); else if (t >= 7) sub = '60 + ' + (10 + u); else sub = t + ' dizaine' + (t > 1 ? 's' : '') + (u ? ' et ' + u + ' unité' + (u > 1 ? 's' : '') : '');
+        dg = n >= 100 ? '<span class="h">' + h + '</span><span class="t">' + (t % 10) + '</span><span class="u">' + u + '</span>' : (t ? '<span class="t">' + t + '</span>' : '') + '<span class="u">' + u + '</span>';
+        items.push({ svg: PICS.numSVG(n), alt: n >= 100 ? h + ' centaine(s), ' + (t % 10) + ' bâtons bleus et ' + u + ' cubes jaunes' : t + ' bâtons bleus et ' + u + ' cubes jaunes',
+          wordHTML: '<span class="digits">' + dg + '</span><span class="nw">' + word + '</span>', sub: sub, speak: word.replace(/-/g, ' ') });
       });
       return { title: l.numbers.title || ('Les nombres de ' + l.numbers.from + ' à ' + l.numbers.to), mode: 'reveal', unit: 'Nombre', next: 'Nombre suivant →', last: 'Terminer',
-        how: "Compte les bâtons bleus (dizaines) et les cubes jaunes (unités). Quel est le nombre ? Touche l'image pour vérifier, puis écris le chiffre et le mot dans ton cahier.",
-        howEs: 'Cuenta las barras azules (decenas) y los cubos amarillos (unidades). ¿Cuál es el número? Toca la imagen para comprobar y escribe la cifra y la palabra en tu cuaderno.',
-        hint: 'Combien y a-t-il ? Pense, puis touche.', endText: 'Tu as écrit les nombres en chiffres et en lettres.', items: items };
+        how: l.numbers.how || "Compte les bâtons bleus (dizaines) et les cubes jaunes (unités). Quel est le nombre ? Touche l'image pour vérifier, puis écris le chiffre et le mot dans ton cahier.",
+        howEs: l.numbers.howEs || 'Cuenta las barras azules (decenas) y los cubos amarillos (unidades). ¿Cuál es el número? Toca la imagen para comprobar y escribe la cifra y la palabra en tu cuaderno.',
+        hint: 'Combien y a-t-il ? Pense, puis touche.', endText: l.numbers.endText || 'Tu as écrit les nombres en chiffres et en lettres.', items: items };
     }
     if (k === 'dictee' && l.dictation && l.dictation.length) return {
       title: 'La dictée du ' + (l.dictationDay || 'jeudi'), mode: 'reveal', unit: 'Phrase', next: 'Phrase suivante →', last: 'Terminer', recap: true,
